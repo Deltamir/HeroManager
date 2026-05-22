@@ -6,17 +6,15 @@
  * survive a passing unit-test build (e.g. a typo in the footer copyright
  * year, or removing a NuxtLink in the header by accident).
  *
- * We hit /public because it is the only definite-public page with no
- * server-side data dependencies (no `useFetch`, no DB hit) — so failures
- * here cleanly point at the layout, not at backend state.
+ * We hit / (home) because it is a public page with no server-side data
+ * dependencies — so failures here cleanly point at the layout, not at
+ * backend state.
  */
 import { test, expect } from "@playwright/test";
 
 test.describe("App layout (chrome)", () => {
-  test("renders the footer with both legal links on /public", async ({
-    page,
-  }) => {
-    await page.goto("/public");
+  test("renders the footer with both legal links", async ({ page }) => {
+    await page.goto("/");
     const tos = page.getByRole("link", { name: "Terms of Service" });
     const pp = page.getByRole("link", { name: "Privacy Policy" });
     await expect(tos).toBeVisible();
@@ -28,14 +26,14 @@ test.describe("App layout (chrome)", () => {
   test("renders the current year in the footer copyright", async ({
     page,
   }) => {
-    await page.goto("/public");
+    await page.goto("/");
     const year = new Date().getFullYear();
     await expect(page.locator("footer")).toContainText(String(year));
     await expect(page.locator("footer")).toContainText("All rights reserved");
   });
 
   test("renders the app bar brand title linking to /", async ({ page }) => {
-    await page.goto("/public");
+    await page.goto("/");
     // The title is a <NuxtLink to="/">HEROMANAGER</NuxtLink> inside <v-app-bar-title>.
     const titleLink = page.getByRole("link", { name: /heromanager/i });
     await expect(titleLink).toBeVisible();
