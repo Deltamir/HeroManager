@@ -1,1 +1,1 @@
-assets/img/**/*.png filter=lfs diff=lfs merge=lfs -text
+public/cards/**/*.png filter=lfs diff=lfs merge=lfs -text
