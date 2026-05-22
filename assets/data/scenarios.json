@@ -1,0 +1,482 @@
+[
+    {
+        "id": 1,
+        "name": "Rhino",
+        "encounter_set_number": 2,
+        "cover_basename": "rhino",
+        "release_id": 1,
+        "mandatory_encounter_sets": [
+            1
+        ],
+        "recommended_encounter_sets": [
+            3
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Klaw",
+        "encounter_set_number": 2,
+        "cover_basename": "klaw",
+        "release_id": 1,
+        "mandatory_encounter_sets": [
+            1
+        ],
+        "recommended_encounter_sets": [
+            4
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Ultron",
+        "encounter_set_number": 2,
+        "cover_basename": "ultron",
+        "release_id": 1,
+        "mandatory_encounter_sets": [
+            1
+        ],
+        "recommended_encounter_sets": [
+            5
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Risky Business",
+        "encounter_set_number": 2,
+        "cover_basename": "risky",
+        "release_id": 2,
+        "mandatory_encounter_sets": [
+            1
+        ],
+        "recommended_encounter_sets": [
+            8
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Mutagen Formula",
+        "encounter_set_number": 2,
+        "cover_basename": "mutagen",
+        "release_id": 2,
+        "mandatory_encounter_sets": [
+            1
+        ],
+        "recommended_encounter_sets": [
+            8
+        ]
+    },
+    {
+        "id": 6,
+        "name": "Crossbones",
+        "encounter_set_number": 4,
+        "cover_basename": "crossbones",
+        "release_id": 4,
+        "mandatory_encounter_sets": [
+            1
+        ],
+        "recommended_encounter_sets": [
+            6,
+            14,
+            15
+        ]
+    },
+    {
+        "id": 7,
+        "name": "Absorbing Man",
+        "encounter_set_number": 2,
+        "cover_basename": "absorbingman",
+        "release_id": 4,
+        "mandatory_encounter_sets": [
+            1
+        ],
+        "recommended_encounter_sets": [
+            15
+        ]
+    },
+    {
+        "id": 8,
+        "name": "Taskmaster",
+        "encounter_set_number": 2,
+        "cover_basename": "taskmaster",
+        "release_id": 4,
+        "mandatory_encounter_sets": [
+            1
+        ],
+        "recommended_encounter_sets": [
+            14
+        ]
+    },
+    {
+        "id": 9,
+        "name": "Zola",
+        "encounter_set_number": 2,
+        "cover_basename": "zola",
+        "release_id": 4,
+        "mandatory_encounter_sets": [
+            1
+        ],
+        "recommended_encounter_sets": [
+            5
+        ]
+    },
+    {
+        "id": 10,
+        "name": "Red Skull",
+        "encounter_set_number": 3,
+        "cover_basename": "redskull",
+        "release_id": 4,
+        "mandatory_encounter_sets": [
+            1
+        ],
+        "recommended_encounter_sets": [
+            13,
+            15
+        ]
+    },
+    {
+        "id": 11,
+        "name": "The Wrecking Crew",
+        "encounter_set_number": 0,
+        "cover_basename": "thewreckingcrew",
+        "release_id": 7,
+        "mandatory_encounter_sets": [],
+        "recommended_encounter_sets": []
+    },
+    {
+        "id": 12,
+        "name": "Kang",
+        "encounter_set_number": 2,
+        "cover_basename": "kang",
+        "release_id": 12,
+        "mandatory_encounter_sets": [
+            1
+        ],
+        "recommended_encounter_sets": [
+            16
+        ]
+    },
+    {
+        "id": 13,
+        "name": "Brotherhood of Badoon",
+        "encounter_set_number": 3,
+        "cover_basename": "brotherhoodofbadoon",
+        "release_id": 17,
+        "mandatory_encounter_sets": [
+            1,
+            24
+        ],
+        "recommended_encounter_sets": [
+            19
+        ]
+    },
+    {
+        "id": 14,
+        "name": "Collector 1 - Infiltrate the Museum",
+        "encounter_set_number": 3,
+        "cover_basename": "collector1",
+        "release_id": 17,
+        "mandatory_encounter_sets": [
+            1,
+            20
+        ],
+        "recommended_encounter_sets": [
+            22
+        ]
+    },
+    {
+        "id": 15,
+        "name": "Collector 2 - Escape the Museum",
+        "encounter_set_number": 4,
+        "cover_basename": "collector2",
+        "release_id": 17,
+        "mandatory_encounter_sets": [
+            1,
+            20,
+            24
+        ],
+        "recommended_encounter_sets": [
+            22
+        ]
+    },
+    {
+        "id": 16,
+        "name": "Nebula",
+        "encounter_set_number": 4,
+        "cover_basename": "nebula",
+        "release_id": 17,
+        "mandatory_encounter_sets": [
+            1,
+            24,
+            25
+        ],
+        "recommended_encounter_sets": [
+            23
+        ]
+    },
+    {
+        "id": 17,
+        "name": "Ronan the Accuser",
+        "encounter_set_number": 4,
+        "cover_basename": "ronantheaccuser",
+        "release_id": 17,
+        "mandatory_encounter_sets": [
+            1,
+            24,
+            25
+        ],
+        "recommended_encounter_sets": [
+            21
+        ]
+    },
+    {
+        "id": 18,
+        "name": "Ebony Maw",
+        "encounter_set_number": 3,
+        "cover_basename": "ebonymaw",
+        "release_id": 22,
+        "mandatory_encounter_sets": [
+            1
+        ],
+        "recommended_encounter_sets": [
+            26,
+            27
+        ]
+    },
+    {
+        "id": 19,
+        "name": "Tower Defense",
+        "encounter_set_number": 2,
+        "cover_basename": "towerdefense",
+        "release_id": 22,
+        "mandatory_encounter_sets": [
+            1
+        ],
+        "recommended_encounter_sets": [
+            27
+        ]
+    },
+    {
+        "id": 20,
+        "name": "Thanos",
+        "encounter_set_number": 4,
+        "cover_basename": "thanos",
+        "release_id": 22,
+        "mandatory_encounter_sets": [
+            1,
+            29
+        ],
+        "recommended_encounter_sets": [
+            26,
+            28
+        ]
+    },
+    {
+        "id": 21,
+        "name": "Hela",
+        "encounter_set_number": 3,
+        "cover_basename": "hela",
+        "release_id": 22,
+        "mandatory_encounter_sets": [
+            1
+        ],
+        "recommended_encounter_sets": [
+            30,
+            31
+        ]
+    },
+    {
+        "id": 22,
+        "name": "Loki",
+        "encounter_set_number": 4,
+        "cover_basename": "loki",
+        "release_id": 22,
+        "mandatory_encounter_sets": [
+            1,
+            29
+        ],
+        "recommended_encounter_sets": [
+            31,
+            32
+        ]
+    },
+    {
+        "id": 23,
+        "name": "The Hood",
+        "encounter_set_number": 8,
+        "cover_basename": "thehood",
+        "release_id": 25,
+        "mandatory_encounter_sets": [
+            1
+        ],
+        "recommended_encounter_sets": []
+    },
+    {
+        "id": 24,
+        "name": "Sandman",
+        "encounter_set_number": 3,
+        "cover_basename": "sandman",
+        "release_id": 28,
+        "mandatory_encounter_sets": [
+            1,
+            44
+        ],
+        "recommended_encounter_sets": [
+            45
+        ]
+    },
+    {
+        "id": 25,
+        "name": "Venom",
+        "encounter_set_number": 3,
+        "cover_basename": "venom",
+        "release_id": 28,
+        "mandatory_encounter_sets": [
+            1,
+            51
+        ],
+        "recommended_encounter_sets": [
+            45
+        ]
+    },
+    {
+        "id": 26,
+        "name": "Mysterio",
+        "encounter_set_number": 3,
+        "cover_basename": "mysterio",
+        "release_id": 28,
+        "mandatory_encounter_sets": [
+            1,
+            49
+        ],
+        "recommended_encounter_sets": [
+            52
+        ]
+    },
+    {
+        "id": 28,
+        "name": "Sinister Six",
+        "encounter_set_number": 2,
+        "cover_basename": "sinistersix",
+        "release_id": 28,
+        "mandatory_encounter_sets": [
+            1,
+            47
+        ],
+        "recommended_encounter_sets": []
+    },
+    {
+        "id": 29,
+        "name": "Venom Goblin",
+        "encounter_set_number": 3,
+        "cover_basename": "venomgoblin",
+        "release_id": 28,
+        "mandatory_encounter_sets": [
+            1,
+            51
+        ],
+        "recommended_encounter_sets": [
+            46
+        ]
+    },
+    {
+        "id": 30,
+        "name": "Sabretooth",
+        "encounter_set_number": 3,
+        "cover_basename": "sabretooth",
+        "release_id": 33,
+        "mandatory_encounter_sets": [
+            1
+        ],
+        "recommended_encounter_sets": [
+            56,
+            57
+        ]
+    },
+    {
+        "id": 31,
+        "name": "Project Wideawake",
+        "encounter_set_number": 3,
+        "cover_basename": "projectwideawake",
+        "release_id": 33,
+        "mandatory_encounter_sets": [
+            1,
+            58
+        ],
+        "recommended_encounter_sets": [
+            59
+        ]
+    },
+    {
+        "id": 32,
+        "name": "Master Mold",
+        "encounter_set_number": 3,
+        "cover_basename": "mastermold",
+        "release_id": 33,
+        "mandatory_encounter_sets": [
+            1,
+            59
+        ],
+        "recommended_encounter_sets": [
+            58
+        ]
+    },
+    {
+        "id": 33,
+        "name": "Mansion Attack",
+        "encounter_set_number": 3,
+        "cover_basename": "mansionattack",
+        "release_id": 33,
+        "mandatory_encounter_sets": [
+            1,
+            57
+        ],
+        "recommended_encounter_sets": [
+            56
+        ]
+    },
+    {
+        "id": 34,
+        "name": "Magneto",
+        "encounter_set_number": 2,
+        "cover_basename": "magneto",
+        "release_id": 33,
+        "mandatory_encounter_sets": [
+            1
+        ],
+        "recommended_encounter_sets": [
+            60
+        ]
+    },
+    {
+        "id": 35,
+        "name": "Magog",
+        "encounter_set_number": 1,
+        "cover_basename": "magog",
+        "release_id": 36,
+        "mandatory_encounter_sets": [
+            1
+        ],
+        "recommended_encounter_sets": []
+    },
+    {
+        "id": 36,
+        "name": "Spiral",
+        "encounter_set_number": 1,
+        "cover_basename": "spiral",
+        "release_id": 36,
+        "mandatory_encounter_sets": [
+            1
+        ],
+        "recommended_encounter_sets": []
+    },
+    {
+        "id": 37,
+        "name": "Mojo",
+        "encounter_set_number": 1,
+        "cover_basename": "mojo",
+        "release_id": 36,
+        "mandatory_encounter_sets": [
+            1
+        ],
+        "recommended_encounter_sets": []
+    }
+]

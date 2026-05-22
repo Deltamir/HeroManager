@@ -1,0 +1,40 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/javascript-node-postgres
+{
+  "name": "Node.js & PostgreSQL",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "runServices": ["app", "db"],
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "forwardPorts": [3000, 5432],
+
+  // corepack enable + yarn 4 download happen in the Dockerfile RUN layer,
+  // so postCreateCommand only needs to install deps and generate the Prisma client.
+  "postCreateCommand": "yarn install && yarn prisma generate && npx playwright install chromium --with-deps",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "ecmel.vscode-html-css",
+        "ms-vscode.vscode-typescript-next",
+        "ms-vscode.live-server",
+        "formulahendry.auto-rename-tag",
+        "christian-kohler.npm-intellisense",
+        "Vue.volar",
+        "humao.rest-client",
+        "firefox-devtools.vscode-firefox-debug",
+        "BriteSnow.vscode-toggle-quotes",
+        "Nuxtr.nuxtr-vscode",
+        "Nuxtr.nuxt-vscode-extentions",
+        "vuetifyjs.vuetify-vscode",
+        "lukas-tr.materialdesignicons-intellisense",
+        "Denifer.mdi-vuetify-intellisense",
+        "Prisma.prisma",
+        "ckolkman.vscode-postgres",
+        "Anthropic.claude-code",
+        "bradlc.vscode-tailwindcss"
+      ]
+    }
+  }
+}

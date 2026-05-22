@@ -1,0 +1,446 @@
+[
+    {
+        "id": 1,
+        "name": "Standard",
+        "cover_basename": "standard",
+        "release_id": 1
+    },
+    {
+        "id": 2,
+        "name": "Expert",
+        "cover_basename": "expert",
+        "release_id": 1
+    },
+    {
+        "id": 3,
+        "name": "Bomb Scare",
+        "cover_basename": "bombscare",
+        "release_id": 1
+    },
+    {
+        "id": 4,
+        "name": "Masters of Evil",
+        "cover_basename": "mastersofevil",
+        "release_id": 1
+    },
+    {
+        "id": 5,
+        "name": "Under Attack",
+        "cover_basename": "underattack",
+        "release_id": 1
+    },
+    {
+        "id": 6,
+        "name": "Legions of Hydra",
+        "cover_basename": "legionsofhydra",
+        "release_id": 1
+    },
+    {
+        "id": 7,
+        "name": "The Doomsday Chair",
+        "cover_basename": "thedoomsdaychair",
+        "release_id": 1
+    },
+    {
+        "id": 8,
+        "name": "Goblin Gimmicks",
+        "cover_basename": "goblingimmicks",
+        "release_id": 2
+    },
+    {
+        "id": 9,
+        "name": "A Mess of Things",
+        "cover_basename": "amessofthings",
+        "release_id": 2
+    },
+    {
+        "id": 10,
+        "name": "Power Drain",
+        "cover_basename": "powerdrain",
+        "release_id": 2
+    },
+    {
+        "id": 11,
+        "name": "Running Interference",
+        "cover_basename": "runninginterference",
+        "release_id": 2
+    },
+    {
+        "id": 12,
+        "name": "Deathstrike",
+        "cover_basename": "deathstrike",
+        "release_id": 3
+    },
+    {
+        "id": 13,
+        "name": "Hydra Assault",
+        "cover_basename": "hydraassault",
+        "release_id": 4
+    },
+    {
+        "id": 14,
+        "name": "Weapon Master",
+        "cover_basename": "weaponmaster",
+        "release_id": 4
+    },
+    {
+        "id": 15,
+        "name": "Hydra Patrol",
+        "cover_basename": "hydrapatrol",
+        "release_id": 4
+    },
+    {
+        "id": 16,
+        "name": "Temporal",
+        "cover_basename": "temporal",
+        "release_id": 12
+    },
+    {
+        "id": 17,
+        "name": "Anachronauts",
+        "cover_basename": "anachronauts",
+        "release_id": 12
+    },
+    {
+        "id": 18,
+        "name": "Master of Time",
+        "cover_basename": "masteroftime",
+        "release_id": 12
+    },
+    {
+        "id": 19,
+        "name": "Band of Badoon",
+        "cover_basename": "bandofbadoon",
+        "release_id": 17
+    },
+    {
+        "id": 20,
+        "name": "Galactic Artifacts",
+        "cover_basename": "galacticartifacts",
+        "release_id": 17
+    },
+    {
+        "id": 21,
+        "name": "Kree Militants",
+        "cover_basename": "kreemilitants",
+        "release_id": 17
+    },
+    {
+        "id": 22,
+        "name": "Menagerie Medley",
+        "cover_basename": "menageriemedley",
+        "release_id": 17
+    },
+    {
+        "id": 23,
+        "name": "Space Pirates",
+        "cover_basename": "spacepirates",
+        "release_id": 17
+    },
+    {
+        "id": 24,
+        "name": "Ship Command",
+        "cover_basename": "shipcommand",
+        "release_id": 17
+    },
+    {
+        "id": 25,
+        "name": "Power Stone",
+        "cover_basename": "powerstone",
+        "release_id": 17
+    },
+    {
+        "id": 26,
+        "name": "Black Order",
+        "cover_basename": "blackorder",
+        "release_id": 22
+    },
+    {
+        "id": 27,
+        "name": "Armies of Titan",
+        "cover_basename": "armiesoftitan",
+        "release_id": 22
+    },
+    {
+        "id": 28,
+        "name": "Children of Thanos",
+        "cover_basename": "childrenofthanos",
+        "release_id": 22
+    },
+    {
+        "id": 29,
+        "name": "Infinity Gauntlet",
+        "cover_basename": "infinitygauntlet",
+        "release_id": 22
+    },
+    {
+        "id": 30,
+        "name": "Legions of Hel",
+        "cover_basename": "legionsofhel",
+        "release_id": 22
+    },
+    {
+        "id": 31,
+        "name": "Frost Giants",
+        "cover_basename": "frostgiants",
+        "release_id": 22
+    },
+    {
+        "id": 32,
+        "name": "Enchantress",
+        "cover_basename": "enchantress",
+        "release_id": 22
+    },
+    {
+        "id": 33,
+        "name": "Beasty Boys",
+        "cover_basename": "beastyboys",
+        "release_id": 25
+    },
+    {
+        "id": 34,
+        "name": "Brothers Grimm",
+        "cover_basename": "brothersgrimm",
+        "release_id": 25
+    },
+    {
+        "id": 35,
+        "name": "Mister Hyde",
+        "cover_basename": "misterhyde",
+        "release_id": 25
+    },
+    {
+        "id": 36,
+        "name": "Wrecking Crew",
+        "cover_basename": "wreckingcrew",
+        "release_id": 25
+    },
+    {
+        "id": 37,
+        "name": "Sinister Syndicate",
+        "cover_basename": "sinistersyndicate",
+        "release_id": 25
+    },
+    {
+        "id": 38,
+        "name": "Crossfire’s Crew",
+        "cover_basename": "crossfirescrew",
+        "release_id": 25
+    },
+    {
+        "id": 39,
+        "name": "Ransacked Armory",
+        "cover_basename": "ransackedarmory",
+        "release_id": 25
+    },
+    {
+        "id": 40,
+        "name": "State of Emergency",
+        "cover_basename": "stateofemergency",
+        "release_id": 25
+    },
+    {
+        "id": 41,
+        "name": "Streets of Mayhem",
+        "cover_basename": "streetsofmayhem",
+        "release_id": 25
+    },
+    {
+        "id": 42,
+        "name": "Standard II",
+        "cover_basename": "standard2",
+        "release_id": 25
+    },
+    {
+        "id": 43,
+        "name": "Expert II",
+        "cover_basename": "expert2",
+        "release_id": 25
+    },
+    {
+        "id": 44,
+        "name": "City in Chaos",
+        "cover_basename": "cityinchaos",
+        "release_id": 28
+    },
+    {
+        "id": 45,
+        "name": "Down to Earth",
+        "cover_basename": "downtoearth",
+        "release_id": 28
+    },
+    {
+        "id": 46,
+        "name": "Goblin Gear",
+        "cover_basename": "goblingear",
+        "release_id": 28
+    },
+    {
+        "id": 47,
+        "name": "Guerilla Tactics",
+        "cover_basename": "guerillatactics",
+        "release_id": 28
+    },
+    {
+        "id": 48,
+        "name": "Osborn Tech",
+        "cover_basename": "osborntech",
+        "release_id": 28
+    },
+    {
+        "id": 49,
+        "name": "Personal Nightmare",
+        "cover_basename": "personalnightmare",
+        "release_id": 28
+    },
+    {
+        "id": 50,
+        "name": "Sinister Assault",
+        "cover_basename": "sinisterassault",
+        "release_id": 28
+    },
+    {
+        "id": 51,
+        "name": "Symbiotic Strength",
+        "cover_basename": "symbioticstrength",
+        "release_id": 28
+    },
+    {
+        "id": 52,
+        "name": "Whispers of Paranoia",
+        "cover_basename": "whispersofparanoia",
+        "release_id": 28
+    },
+    {
+        "id": 53,
+        "name": "Armadillo",
+        "cover_basename": "armadillo",
+        "release_id": 29
+    },
+    {
+        "id": 54,
+        "name": "Zzzax",
+        "cover_basename": "zzzax",
+        "release_id": 30
+    },
+    {
+        "id": 55,
+        "name": "The Inheritors",
+        "cover_basename": "theinheritors",
+        "release_id": 31
+    },
+    {
+        "id": 56,
+        "name": "Mystique",
+        "cover_basename": "mystique",
+        "release_id": 33
+    },
+    {
+        "id": 57,
+        "name": "Brotherhood",
+        "cover_basename": "brotherhood",
+        "release_id": 33
+    },
+    {
+        "id": 58,
+        "name": "Zero Tolerance",
+        "cover_basename": "zerotolerance",
+        "release_id": 33
+    },
+    {
+        "id": 59,
+        "name": "Sentinels",
+        "cover_basename": "sentinels",
+        "release_id": 33
+    },
+    {
+        "id": 60,
+        "name": "Acolytes",
+        "cover_basename": "acolytes",
+        "release_id": 33
+    },
+    {
+        "id": 61,
+        "name": "Future Past",
+        "cover_basename": "futurepast",
+        "release_id": 33
+    },
+    {
+        "id": 62,
+        "name": "Crime",
+        "cover_basename": "crime",
+        "release_id": 36
+    },
+    {
+        "id": 63,
+        "name": "Fantasy",
+        "cover_basename": "fantasy",
+        "release_id": 36
+    },
+    {
+        "id": 64,
+        "name": "Horror",
+        "cover_basename": "horror",
+        "release_id": 36
+    },
+    {
+        "id": 65,
+        "name": "Sci-Fi",
+        "cover_basename": "scifi",
+        "release_id": 36
+    },
+    {
+        "id": 66,
+        "name": "Sitcom",
+        "cover_basename": "sitcom",
+        "release_id": 36
+    },
+    {
+        "id": 67,
+        "name": "Western",
+        "cover_basename": "western",
+        "release_id": 36
+    },
+    {
+        "id": 68,
+        "name": "Longshot",
+        "cover_basename": "longshot",
+        "release_id": 36
+    },
+    {
+        "id": 69,
+        "name": "Shadow King",
+        "cover_basename": "shadowking",
+        "release_id": 37
+    },
+    {
+        "id": 70,
+        "name": "Exodus",
+        "cover_basename": "exodus",
+        "release_id": 38
+    },
+    {
+        "id": 71,
+        "name": "Reavers",
+        "cover_basename": "reavers",
+        "release_id": 39
+    },
+    {
+        "id": 72,
+        "name": "Experimental Weapons",
+        "cover_basename": "experimentalweapons",
+        "release_id": 4
+    },
+    {
+        "id": 73,
+        "name": "Badoon Headhunter",
+        "cover_basename": "badoonheadhunter",
+        "release_id": 17
+    },
+    {
+        "id": 74,
+        "name": "Iron Spider's Sinister Six",
+        "cover_basename": "ironspider",
+        "release_id": 32
+    }
+]
