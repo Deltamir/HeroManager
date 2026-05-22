@@ -34,10 +34,10 @@ test.describe("App layout (chrome)", () => {
     await expect(page.locator("footer")).toContainText("All rights reserved");
   });
 
-  test("renders the app bar title 'Name' linking to /", async ({ page }) => {
+  test("renders the app bar brand title linking to /", async ({ page }) => {
     await page.goto("/public");
-    // The title is a <NuxtLink to="/">Name</NuxtLink> inside <v-app-bar-title>.
-    const titleLink = page.getByRole("link", { name: "Name" });
+    // The title is a <NuxtLink to="/">HEROMANAGER</NuxtLink> inside <v-app-bar-title>.
+    const titleLink = page.getByRole("link", { name: /heromanager/i });
     await expect(titleLink).toBeVisible();
     await expect(titleLink).toHaveAttribute("href", "/");
   });
