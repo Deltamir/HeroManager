@@ -45,3 +45,7 @@ jobs:
         uses: github/codeql-action/analyze@v4
         with:
           category: /language:javascript-typescript
+          # Default Setup is enabled on this public repo and owns the SARIF
+          # upload slot. Setting upload:never lets the advanced workflow run
+          # the extended query suite without conflicting with Default Setup.
+          upload: never
