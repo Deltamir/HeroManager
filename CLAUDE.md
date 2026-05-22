@@ -66,7 +66,7 @@ yarn preview
 - **`middleware/auth.global.ts`** runs on every route and mirrors the previous sidebase behaviour — protected by default, opt out per page.
 - To make a page public: `definePageMeta({ auth: false })`.
 - For the login page (redirect authenticated users away): `definePageMeta({ auth: { unauthenticatedOnly: true, navigateAuthenticatedTo: '/' } })`.
-- `BETTER_AUTH_SECRET` and `BETTER_AUTH_URL` must be set as env vars (HCP Vault Secrets or `.env`). The secret must be ≥ 32 chars — generate one with `openssl rand -base64 32`.
+- `BETTER_AUTH_SECRET` must be set as an env var (HCP Vault Secrets or `.env`). It must be ≥ 32 chars — generate with `openssl rand -base64 32`.
 
 ### Prisma / Database
 
@@ -102,7 +102,7 @@ const prisma = event.context.prisma;
 | ------------------------------------------- | ------------- | --------------------------------------------------------------------------------------------------------- |
 | `DATABASE_URL`                              | `.env`        | Host is `db` inside DevContainer, `localhost` otherwise                                                   |
 | `BETTER_AUTH_SECRET`                        | `.env` / HCP  | ≥ 32 chars — generate with `openssl rand -base64 32`                                                      |
-| `BETTER_AUTH_URL`                           | `.env`        | Public base URL — only needed locally. On Vercel, `VERCEL_URL` is used automatically (see `lib/auth.ts`). |
+| `VERCEL_PROJECT_PRODUCTION_URL`             | `.env` (optional) | Public base URL. On Vercel, injected automatically as a bare host → `https://` is prepended. Locally, omit for `http://localhost:3000` default, or set a full URL (e.g. `http://localhost:3001`) to override. |
 | `GHUB_CLIENT_ID` / `GHUB_CLIENT_SECRET`     | `.env` or HCP | Use `yarn dev:hcp` to inject from HCP Vault Secrets                                                       |
 | `TWITCH_CLIENT_ID` / `TWITCH_CLIENT_SECRET` | `.env` or HCP | Same as above                                                                                             |
 | `RESEND_API_KEY`                            | `.env` or HCP | Resend API key — sends the magic-link sign-in email                                                       |

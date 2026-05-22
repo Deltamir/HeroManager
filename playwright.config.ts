@@ -79,7 +79,8 @@ export default defineConfig({
           BETTER_AUTH_SECRET:
             process.env.BETTER_AUTH_SECRET ||
             "ci-test-secret-minimum-32-chars-padding-ok",
-          BETTER_AUTH_URL: process.env.BETTER_AUTH_URL || "http://localhost:3000",
+          VERCEL_PROJECT_PRODUCTION_URL:
+            process.env.VERCEL_PROJECT_PRODUCTION_URL || "http://localhost:3000",
         },
       },
 });
