@@ -1,0 +1,275 @@
+[
+    {
+        "id": 1,
+        "name": "Core Set",
+        "release_date": "2019-11-01",
+        "standalone": 0,
+        "cover_basename": "coreset"
+    },
+    {
+        "id": 2,
+        "name": "Green Goblin",
+        "release_date": "2019-12-20",
+        "standalone": 1,
+        "cover_basename": "greengoblin"
+    },
+    {
+        "id": 3,
+        "name": "Wolverine",
+        "release_date": "2022-11-11",
+        "standalone": 1,
+        "cover_basename": "wolverine"
+    },
+    {
+        "id": 4,
+        "name": "The Rise of Red Skull",
+        "release_date": "2020-09-04",
+        "standalone": 0,
+        "cover_basename": "theriseofredskull"
+    },
+    {
+        "id": 5,
+        "name": "Captain America",
+        "release_date": "2019-12-20",
+        "standalone": 1,
+        "cover_basename": "captainamerica"
+    },
+    {
+        "id": 6,
+        "name": "Ms. Marvel",
+        "release_date": "2019-12-20",
+        "standalone": 1,
+        "cover_basename": "msmarvel"
+    },
+    {
+        "id": 7,
+        "name": "The Wrecking Crew",
+        "release_date": "2020-02-07",
+        "standalone": 1,
+        "cover_basename": "thewreckingcrew"
+    },
+    {
+        "id": 8,
+        "name": "Thor",
+        "release_date": "2020-03-06",
+        "standalone": 1,
+        "cover_basename": "thor"
+    },
+    {
+        "id": 9,
+        "name": "Black Widow",
+        "release_date": "2020-06-05",
+        "standalone": 1,
+        "cover_basename": "blackwidow"
+    },
+    {
+        "id": 10,
+        "name": "Doctor Strange",
+        "release_date": "2020-07-03",
+        "standalone": 1,
+        "cover_basename": "doctorstrange"
+    },
+    {
+        "id": 11,
+        "name": "Hulk",
+        "release_date": "2020-08-07",
+        "standalone": 1,
+        "cover_basename": "hulk"
+    },
+    {
+        "id": 12,
+        "name": "The Once and Future Kang",
+        "release_date": "2020-10-02",
+        "standalone": 1,
+        "cover_basename": "theonceandfuturekang"
+    },
+    {
+        "id": 13,
+        "name": "Ant-Man",
+        "release_date": "2020-11-06",
+        "standalone": 1,
+        "cover_basename": "antman"
+    },
+    {
+        "id": 14,
+        "name": "Wasp",
+        "release_date": "2021-01-22",
+        "standalone": 1,
+        "cover_basename": "wasp"
+    },
+    {
+        "id": 15,
+        "name": "Quicksilver",
+        "release_date": "2021-02-05",
+        "standalone": 1,
+        "cover_basename": "quicksilver"
+    },
+    {
+        "id": 16,
+        "name": "Scarlet Witch",
+        "release_date": "2021-03-05",
+        "standalone": 1,
+        "cover_basename": "scarletwitch"
+    },
+    {
+        "id": 17,
+        "name": "Galaxy's Most Wanted",
+        "release_date": "2021-04-02",
+        "standalone": 0,
+        "cover_basename": "galaxysmostwanted"
+    },
+    {
+        "id": 18,
+        "name": "Star-Lord",
+        "release_date": "2021-05-14",
+        "standalone": 1,
+        "cover_basename": "starlord"
+    },
+    {
+        "id": 19,
+        "name": "Gamora",
+        "release_date": "2021-05-14",
+        "standalone": 1,
+        "cover_basename": "gamora"
+    },
+    {
+        "id": 20,
+        "name": "Drax",
+        "release_date": "2021-06-18",
+        "standalone": 1,
+        "cover_basename": "drax"
+    },
+    {
+        "id": 21,
+        "name": "Venom",
+        "release_date": "2021-07-16",
+        "standalone": 1,
+        "cover_basename": "venom"
+    },
+    {
+        "id": 22,
+        "name": "The Mad Titan's Shadow",
+        "release_date": "2021-10-29",
+        "standalone": 0,
+        "cover_basename": "themadtitanssshadow"
+    },
+    {
+        "id": 23,
+        "name": "Nebula",
+        "release_date": "2021-09-17",
+        "standalone": 1,
+        "cover_basename": "nebula"
+    },
+    {
+        "id": 24,
+        "name": "War Machine",
+        "release_date": "2021-11-12",
+        "standalone": 1,
+        "cover_basename": "warmachine"
+    },
+    {
+        "id": 25,
+        "name": "The Hood",
+        "release_date": "2021-11-26",
+        "standalone": 1,
+        "cover_basename": "thehood"
+    },
+    {
+        "id": 26,
+        "name": "Valkyrie",
+        "release_date": "2022-01-21",
+        "standalone": 1,
+        "cover_basename": "valkyrie"
+    },
+    {
+        "id": 27,
+        "name": "Vision",
+        "release_date": "2022-01-14",
+        "standalone": 1,
+        "cover_basename": "vision"
+    },
+    {
+        "id": 28,
+        "name": "Sinister Motives",
+        "release_date": "2022-04-08",
+        "standalone": 0,
+        "cover_basename": "sinistermotives"
+    },
+    {
+        "id": 29,
+        "name": "Nova",
+        "release_date": "2022-05-20",
+        "standalone": 1,
+        "cover_basename": "nova"
+    },
+    {
+        "id": 30,
+        "name": "Ironheart",
+        "release_date": "2022-05-20",
+        "standalone": 1,
+        "cover_basename": "ironheart"
+    },
+    {
+        "id": 31,
+        "name": "Spider-Ham",
+        "release_date": "2022-07-15",
+        "standalone": 1,
+        "cover_basename": "spiderham"
+    },
+    {
+        "id": 32,
+        "name": "SP//dr",
+        "release_date": "2022-07-15",
+        "standalone": 1,
+        "cover_basename": "spdr"
+    },
+    {
+        "id": 33,
+        "name": "Mutant Genesis",
+        "release_date": "2022-09-30",
+        "standalone": 0,
+        "cover_basename": "mutantgenesis"
+    },
+    {
+        "id": 34,
+        "name": "Cyclops",
+        "release_date": "2022-09-30",
+        "standalone": 1,
+        "cover_basename": "cyclops"
+    },
+    {
+        "id": 35,
+        "name": "Phoenix",
+        "release_date": "2022-09-30",
+        "standalone": 1,
+        "cover_basename": "phoenix"
+    },
+    {
+        "id": 36,
+        "name": "Mojo Mania",
+        "release_date": "2022-11-11",
+        "standalone": 0,
+        "cover_basename": "mojomania"
+    },
+    {
+        "id": 37,
+        "name": "Storm",
+        "release_date": "2022-11-11",
+        "standalone": 1,
+        "cover_basename": "storm"
+    },
+    {
+        "id": 38,
+        "name": "Gambit",
+        "release_date": "2023-02-24",
+        "standalone": 1,
+        "cover_basename": "gambit"
+    },
+    {
+        "id": 39,
+        "name": "Rogue",
+        "release_date": "2023-02-24",
+        "standalone": 1,
+        "cover_basename": "rogue"
+    }
+]

@@ -1,0 +1,64 @@
+/* ─── Typography ─────────────────────────────────────────────────────────── */
+html,
+body,
+.v-application {
+  font-family: "Nunito", system-ui, -apple-system, BlinkMacSystemFont,
+    sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.text-h1,
+.text-h2,
+.text-h3,
+.text-h4,
+.text-h5,
+.text-h6 {
+  font-family: "Barlow Condensed", system-ui, sans-serif !important;
+  letter-spacing: 0.01em;
+}
+
+/* ─── App bar — glassmorphism (dark theme) ───────────────────────────────── */
+
+.v-app-bar.glass-bar {
+  background: rgba(var(--v-theme-surface), 0.75) !important;
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border-bottom: 1px solid rgba(var(--v-theme-on-surface), 0.06);
+  box-shadow: none !important;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.v-app-bar.glass-bar.v-app-bar--elevated {
+  background: rgba(var(--v-theme-surface), 0.92) !important;
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.28) !important;
+}
+
+/* ─── App bar — light theme overrides ───────────────────────────────────── */
+
+.v-theme--light .v-app-bar.glass-bar {
+  background: rgba(190, 210, 248, 0.82) !important;
+  border-bottom: 1px solid rgba(60, 90, 180, 0.12);
+}
+
+.v-theme--light .v-app-bar.glass-bar.v-app-bar--elevated {
+  background: rgba(190, 210, 248, 0.96) !important;
+  box-shadow: 0 2px 20px rgba(40, 60, 140, 0.12) !important;
+}
+
+/* ─── Navigation drawer ──────────────────────────────────────────────────── */
+
+.v-navigation-drawer {
+  border-right: 1px solid rgba(var(--v-theme-on-surface), 0.07) !important;
+}
+
+.v-theme--light .v-navigation-drawer {
+  border-right: 1px solid rgba(60, 90, 180, 0.14) !important;
+  box-shadow: 2px 0 16px rgba(30, 50, 120, 0.08) !important;
+}

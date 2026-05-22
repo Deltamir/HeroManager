@@ -1,0 +1,303 @@
+[
+    {
+        "id": 1,
+        "hero_name": "Spider-Man",
+        "alterego_name": "Peter Parker",
+        "cover_basename": "spiderman",
+        "release_id": 1
+    },
+    {
+        "id": 2,
+        "hero_name": "Captain Marvel",
+        "alterego_name": "Carol Danvers",
+        "cover_basename": "captainmarvel",
+        "release_id": 1
+    },
+    {
+        "id": 3,
+        "hero_name": "She-Hulk",
+        "alterego_name": "Jennifer Walters",
+        "cover_basename": "shehulk",
+        "release_id": 1
+    },
+    {
+        "id": 4,
+        "hero_name": "Iron Man",
+        "alterego_name": "Tony Stark",
+        "cover_basename": "ironman",
+        "release_id": 1
+    },
+    {
+        "id": 5,
+        "hero_name": "Black Panther",
+        "alterego_name": "T'Challa",
+        "cover_basename": "blackpanther",
+        "release_id": 1
+    },
+    {
+        "id": 6,
+        "hero_name": "Wolverine",
+        "alterego_name": "Logan",
+        "cover_basename": "wolverine",
+        "release_id": 3
+    },
+    {
+        "id": 7,
+        "hero_name": "Hawkeye",
+        "alterego_name": "Clint Barton",
+        "cover_basename": "hawkeye",
+        "release_id": 4
+    },
+    {
+        "id": 8,
+        "hero_name": "Spider-Woman",
+        "alterego_name": "Jessica Drew",
+        "cover_basename": "spiderwoman",
+        "release_id": 4
+    },
+    {
+        "id": 9,
+        "hero_name": "Captain America",
+        "alterego_name": "Steve Rogers",
+        "cover_basename": "captainamerica",
+        "release_id": 5
+    },
+    {
+        "id": 10,
+        "hero_name": "Ms. Marvel",
+        "alterego_name": "Kamala Khan",
+        "cover_basename": "msmarvel",
+        "release_id": 6
+    },
+    {
+        "id": 11,
+        "hero_name": "Thor",
+        "alterego_name": "Odinson",
+        "cover_basename": "thor",
+        "release_id": 8
+    },
+    {
+        "id": 12,
+        "hero_name": "Black Widow",
+        "alterego_name": "Natasha Romanoff",
+        "cover_basename": "blackwidow",
+        "release_id": 9
+    },
+    {
+        "id": 13,
+        "hero_name": "Doctor Strange",
+        "alterego_name": "Stephen Strange",
+        "cover_basename": "doctorstrange",
+        "release_id": 10
+    },
+    {
+        "id": 14,
+        "hero_name": "Hulk",
+        "alterego_name": "Bruce Banner",
+        "cover_basename": "hulk",
+        "release_id": 11
+    },
+    {
+        "id": 15,
+        "hero_name": "Ant-Man",
+        "alterego_name": "Scott Lang",
+        "cover_basename": "antman",
+        "release_id": 13
+    },
+    {
+        "id": 16,
+        "hero_name": "Wasp",
+        "alterego_name": "Nadia Van Dyne",
+        "cover_basename": "wasp",
+        "release_id": 14
+    },
+    {
+        "id": 17,
+        "hero_name": "Quicksilver",
+        "alterego_name": "Pietro Maximoff",
+        "cover_basename": "quicksilver",
+        "release_id": 15
+    },
+    {
+        "id": 18,
+        "hero_name": "Scarlet Witch",
+        "alterego_name": "Wanda Maximoff",
+        "cover_basename": "scarletwitch",
+        "release_id": 16
+    },
+    {
+        "id": 19,
+        "hero_name": "Groot",
+        "alterego_name": "Groot",
+        "cover_basename": "groot",
+        "release_id": 17
+    },
+    {
+        "id": 20,
+        "hero_name": "Rocket Raccoon",
+        "alterego_name": "Rocket Raccoon",
+        "cover_basename": "rocketraccoon",
+        "release_id": 17
+    },
+    {
+        "id": 21,
+        "hero_name": "Star-Lord",
+        "alterego_name": "Peter Quill",
+        "cover_basename": "starlord",
+        "release_id": 18
+    },
+    {
+        "id": 22,
+        "hero_name": "Gamora",
+        "alterego_name": "Gamora",
+        "cover_basename": "gamora",
+        "release_id": 19
+    },
+    {
+        "id": 23,
+        "hero_name": "Drax",
+        "alterego_name": "Drax",
+        "cover_basename": "drax",
+        "release_id": 20
+    },
+    {
+        "id": 24,
+        "hero_name": "Venom",
+        "alterego_name": "Flash Thompson",
+        "cover_basename": "venom",
+        "release_id": 21
+    },
+    {
+        "id": 25,
+        "hero_name": "Spectrum",
+        "alterego_name": "Monica Rambeau",
+        "cover_basename": "spectrum",
+        "release_id": 22
+    },
+    {
+        "id": 26,
+        "hero_name": "Adam Warlock",
+        "alterego_name": "Adam Warlock",
+        "cover_basename": "adamwarlock",
+        "release_id": 22
+    },
+    {
+        "id": 27,
+        "hero_name": "Nebula",
+        "alterego_name": "Nebula",
+        "cover_basename": "nebula",
+        "release_id": 23
+    },
+    {
+        "id": 28,
+        "hero_name": "War Machine",
+        "alterego_name": "James Rhodes",
+        "cover_basename": "warmachine",
+        "release_id": 24
+    },
+    {
+        "id": 29,
+        "hero_name": "Valkyrie",
+        "alterego_name": "Brunnhilde",
+        "cover_basename": "valkyrie",
+        "release_id": 26
+    },
+    {
+        "id": 30,
+        "hero_name": "Vision",
+        "alterego_name": "Vision",
+        "cover_basename": "vision",
+        "release_id": 27
+    },
+    {
+        "id": 31,
+        "hero_name": "Ghost-Spider",
+        "alterego_name": "Gwen Stacy",
+        "cover_basename": "ghostspider",
+        "release_id": 28
+    },
+    {
+        "id": 32,
+        "hero_name": "Spider-Man",
+        "alterego_name": "Miles Morales",
+        "cover_basename": "spidermanmiles",
+        "release_id": 28
+    },
+    {
+        "id": 33,
+        "hero_name": "Nova",
+        "alterego_name": "Sam Alexander",
+        "cover_basename": "nova",
+        "release_id": 29
+    },
+    {
+        "id": 34,
+        "hero_name": "Ironheart",
+        "alterego_name": "Riri Williams",
+        "cover_basename": "ironheart",
+        "release_id": 30
+    },
+    {
+        "id": 35,
+        "hero_name": "Spider-Ham",
+        "alterego_name": "Peter Porker",
+        "cover_basename": "spiderham",
+        "release_id": 31
+    },
+    {
+        "id": 36,
+        "hero_name": "SP//dr",
+        "alterego_name": "Peni Parker",
+        "cover_basename": "spdr",
+        "release_id": 32
+    },
+    {
+        "id": 37,
+        "hero_name": "Colossus",
+        "alterego_name": "Piotr Rasputin",
+        "cover_basename": "colossus",
+        "release_id": 33
+    },
+    {
+        "id": 38,
+        "hero_name": "Shadowcat",
+        "alterego_name": "Kitty Pryde",
+        "cover_basename": "shadowcat",
+        "release_id": 33
+    },
+    {
+        "id": 39,
+        "hero_name": "Cyclops",
+        "alterego_name": "Scott Summers",
+        "cover_basename": "cyclops",
+        "release_id": 34
+    },
+    {
+        "id": 40,
+        "hero_name": "Phoenix",
+        "alterego_name": "Jean Grey",
+        "cover_basename": "phoenix",
+        "release_id": 35
+    },
+    {
+        "id": 41,
+        "hero_name": "Storm",
+        "alterego_name": "Ororo Munroe",
+        "cover_basename": "storm",
+        "release_id": 37
+    },
+    {
+        "id": 42,
+        "hero_name": "Gambit",
+        "alterego_name": "Remy LeBeau",
+        "cover_basename": "gambit",
+        "release_id": 38
+    },
+    {
+        "id": 43,
+        "hero_name": "Rogue",
+        "alterego_name": "Anna Marie",
+        "cover_basename": "rogue",
+        "release_id": 39
+    }
+]
