@@ -8,7 +8,17 @@
     <v-card rounded="xl">
       <div class="d-flex align-center ga-3 px-5 pt-4 pb-2">
         <v-icon icon="mdi-sword-cross" color="primary" />
-        <span class="text-h5 flex-grow-1">Record a match</span>
+        <span class="text-h5 flex-grow-1">{{ match ? "Edit match" : "Record a match" }}</span>
+        <v-chip
+          :color="onlyOwned ? 'primary' : undefined"
+          :variant="onlyOwned ? 'flat' : 'outlined'"
+          size="small"
+          prepend-icon="mdi-bookmark-check"
+          class="cursor-pointer"
+          @click="onlyOwned = !onlyOwned"
+        >
+          Owned only
+        </v-chip>
         <v-btn icon="mdi-close" variant="text" size="small" @click="close" />
       </div>
       <v-divider />
@@ -174,28 +184,37 @@
 <script setup lang="ts">
 import * as yup from "yup";
 import { ASPECTS, DIFFICULTIES } from "~/types/cards";
-import type { Aspect, MatchInput } from "~/types/cards";
+import type { Aspect, MatchInput, MatchRecord } from "~/types/cards";
 
-const props = defineProps<{ modelValue: boolean; saving?: boolean }>();
+const props = defineProps<{
+  modelValue: boolean;
+  saving?: boolean;
+  match?: MatchRecord | null;
+}>();
 const emit = defineEmits<{
   "update:modelValue": [boolean];
   submit: [MatchInput];
 }>();
 
 const cardsStore = useCardsStore();
+const collectionStore = useCollectionStore();
+const onlyOwned = ref(true);
 
 const scenarioItems = computed(() =>
   [...cardsStore.curatedScenarios]
+    .filter((s) => !onlyOwned.value || collectionStore.hasCard(s))
     .sort((a, b) => a.name.localeCompare(b.name))
     .map((s) => ({ title: s.name, value: s.id })),
 );
 const heroItems = computed(() =>
   [...cardsStore.curatedHeroes]
+    .filter((h) => !onlyOwned.value || collectionStore.hasCard(h))
     .sort((a, b) => a.hero_name.localeCompare(b.hero_name))
     .map((h) => ({ title: `${h.hero_name} / ${h.alterego_name}`, value: h.id })),
 );
 const encounterItems = computed(() =>
   [...cardsStore.curatedEncounterSets]
+    .filter((e) => !onlyOwned.value || collectionStore.hasCard(e))
     .sort((a, b) => a.name.localeCompare(b.name))
     .map((e) => ({ title: e.name, value: e.id })),
 );
@@ -230,7 +249,7 @@ const { handleSubmit, resetForm } = useForm({
   }),
   initialValues: {
     victory: true,
-    scenarioId: null,
+    scenarioId: null as number | null,
     difficulty: "Standard",
     playedAt: today(),
     comment: "",
@@ -298,22 +317,42 @@ const submit = handleSubmit((values) => {
   });
 });
 
-// Reset to a clean slate each time the dialog opens.
+// Reset form each time the dialog opens; pre-populate when editing.
 watch(
   () => props.modelValue,
   (open) => {
     if (open) {
-      resetForm({
-        values: {
-          victory: true,
-          scenarioId: null,
-          difficulty: "Standard",
-          playedAt: today(),
-          comment: "",
-          encounterIds: [],
-          heroes: [{ heroId: null, aspects: [] }],
-        },
-      });
+      if (props.match) {
+        const m = props.match;
+        onlyOwned.value = false;
+        resetForm({
+          values: {
+            victory: m.victory,
+            scenarioId: m.scenarioId,
+            difficulty: m.difficulty,
+            playedAt: m.playedAt.slice(0, 10),
+            comment: m.comment ?? "",
+            encounterIds: m.encounterIds as number[],
+            heroes: (m.heroes as import("~/types/cards").MatchHero[]).map((h) => ({
+              heroId: h.heroId,
+              aspects: h.aspects as Aspect[],
+            })),
+          },
+        });
+      } else {
+        onlyOwned.value = true;
+        resetForm({
+          values: {
+            victory: true,
+            scenarioId: null,
+            difficulty: "Standard",
+            playedAt: today(),
+            comment: "",
+            encounterIds: [],
+            heroes: [{ heroId: null as number | null, aspects: [] as Aspect[] }],
+          },
+        });
+      }
       heroError.value = "";
     }
   },

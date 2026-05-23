@@ -55,6 +55,7 @@
         :match="match"
         :deleting="deletingId === match.id"
         @delete="onDelete"
+        @edit="onEdit"
       />
     </div>
 
@@ -71,11 +72,12 @@
     </v-card>
 
     <MatchFormDialog v-model="formOpen" :saving="saving" @submit="onSubmit" />
+    <MatchFormDialog v-model="editOpen" :saving="editSaving" :match="editMatch" @submit="onEditSubmit" />
   </v-container>
 </template>
 
 <script setup lang="ts">
-import type { MatchInput } from "~/types/cards";
+import type { MatchInput, MatchRecord } from "~/types/cards";
 
 const matches = useMatchesStore();
 const { success, error } = useSnackbar();
@@ -84,6 +86,9 @@ const formOpen = ref(false);
 const saving = ref(false);
 const refreshing = ref(false);
 const deletingId = ref<string | null>(null);
+const editOpen = ref(false);
+const editSaving = ref(false);
+const editMatch = ref<MatchRecord | null>(null);
 
 async function load(force = false) {
   try {
@@ -124,6 +129,26 @@ async function onDelete(id: string) {
     error("Couldn't delete the match.");
   } finally {
     deletingId.value = null;
+  }
+}
+
+function onEdit(match: MatchRecord) {
+  editMatch.value = match;
+  editOpen.value = true;
+}
+
+async function onEditSubmit(input: MatchInput) {
+  if (!editMatch.value) return;
+  editSaving.value = true;
+  try {
+    await matches.update(editMatch.value.id, input);
+    success("Match updated.");
+    editOpen.value = false;
+  } catch {
+    error("Couldn't update the match.");
+  } finally {
+    editSaving.value = false;
+    editMatch.value = null;
   }
 }
 </script>
