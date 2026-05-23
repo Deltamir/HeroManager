@@ -19,9 +19,18 @@
             {{ card.name }}
           </v-list-item-title>
           <v-list-item-subtitle>
-            <span v-if="showType" class="text-medium-emphasis">
-              {{ cardTypeMeta[card.type].label }} ·
-            </span>
+            <template v-if="showType">
+              <v-icon
+                :icon="cardTypeMeta[card.type].icon"
+                :color="cardTypeMeta[card.type].color"
+                size="13"
+                class="mr-0.5"
+              />
+              <span :class="`text-${cardTypeMeta[card.type].color}`" class="font-weight-medium">
+                {{ cardTypeMeta[card.type].label }}
+              </span>
+              <span class="text-medium-emphasis"> · </span>
+            </template>
             {{ releaseName(card) }}
             <span class="text-disabled"> · {{ releaseDate(card) }}</span>
           </v-list-item-subtitle>
@@ -35,8 +44,8 @@
               "
               :color="collectionStore.hasCard(card) ? 'success' : 'primary'"
               variant="text"
-              :loading="busy"
-              @click.stop="toggleCard(card)"
+              :loading="busyIds.has(cardKey(card))"
+              @click.stop="handleToggle(card)"
             />
           </template>
         </v-list-item>
@@ -71,7 +80,27 @@ withDefaults(
 );
 
 const cardsStore = useCardsStore();
-const { store: collectionStore, busy, toggleCard } = useCollection();
+const { store: collectionStore, toggleCard } = useCollection();
+
+// Per-card loading state — replacing the shared `busy` ref so only the
+// clicked card's spinner fires.
+const busyIds = ref<Set<string>>(new Set());
+
+function cardKey(card: CuratedCard) {
+  return `${card.type}-${card.id}`;
+}
+
+async function handleToggle(card: CuratedCard) {
+  const key = cardKey(card);
+  busyIds.value = new Set([...busyIds.value, key]);
+  try {
+    await toggleCard(card);
+  } finally {
+    const next = new Set(busyIds.value);
+    next.delete(key);
+    busyIds.value = next;
+  }
+}
 
 const detailOpen = ref(false);
 const selected = ref<CuratedCard | null>(null);

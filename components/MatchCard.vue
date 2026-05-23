@@ -24,6 +24,12 @@
         <v-spacer />
         <span class="text-caption text-medium-emphasis">{{ playedDate }}</span>
         <v-btn
+          icon="mdi-pencil-outline"
+          variant="text"
+          size="small"
+          @click="emit('edit', match)"
+        />
+        <v-btn
           icon="mdi-trash-can-outline"
           variant="text"
           size="small"
@@ -97,7 +103,7 @@
 import type { MatchHero, MatchRecord } from "~/types/cards";
 
 const props = defineProps<{ match: MatchRecord; deleting?: boolean }>();
-const emit = defineEmits<{ delete: [string] }>();
+const emit = defineEmits<{ delete: [string]; edit: [MatchRecord] }>();
 
 const cardsStore = useCardsStore();
 

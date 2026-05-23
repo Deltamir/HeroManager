@@ -8,13 +8,14 @@
  *
  * What we keep here is the one piece of behaviour that ships as a
  * BOOTSTRAP CONTRACT and that every fork should keep working:
- * the public baseURL resolution, which reads env vars in priority order
+ * the public baseURL resolution via VERCEL_PROJECT_PRODUCTION_URL:
  *
- *   1. BETTER_AUTH_URL              — explicit override (any env)
- *   2. VERCEL_PROJECT_PRODUCTION_URL — stable Vercel production URL,
- *                                     used because OAuth redirect URIs
- *                                     are registered against it
- *   3. http://localhost:3000        — local-dev fallback
+ *   1. Value with no protocol (e.g. "myapp.vercel.app")
+ *      → https:// is prepended  (Vercel auto-populates host-only)
+ *   2. Value that already starts with "http" (e.g. "http://localhost:3001")
+ *      → used as-is             (local dev override on non-default port)
+ *   3. Variable unset
+ *      → http://localhost:3000  (local-dev default)
  *
  * The upstream SDK boundaries (`better-auth`, `better-auth/adapters/prisma`,
  * Better Auth's magic-link plugin, the email transport) are mocked so the
@@ -62,7 +63,6 @@ describe("lib/auth", () => {
     // Reset modules so each `import("~~/lib/auth")` re-runs the top-level
     // `const baseURL = ...` against the current env snapshot.
     vi.resetModules();
-    delete process.env.BETTER_AUTH_URL;
     delete process.env.VERCEL_PROJECT_PRODUCTION_URL;
   });
 
@@ -70,27 +70,24 @@ describe("lib/auth", () => {
     process.env = { ...originalEnv };
   });
 
-  it("resolves baseURL with the documented env priority chain", async () => {
-    // 1. BETTER_AUTH_URL wins outright when set.
-    process.env.BETTER_AUTH_URL = "https://example.com";
-    process.env.VERCEL_PROJECT_PRODUCTION_URL = "ignored.vercel.app";
-    await import("~~/lib/auth");
-    expect(
-      (betterAuthSpy.mock.calls[0]![0] as { baseURL: string }).baseURL,
-    ).toBe("https://example.com");
-
-    // 2. VERCEL_PROJECT_PRODUCTION_URL is used when BETTER_AUTH_URL is unset
-    //    — and gets `https://` prepended (Vercel injects host only).
-    betterAuthSpy.mockClear();
-    vi.resetModules();
-    delete process.env.BETTER_AUTH_URL;
+  it("resolves baseURL from VERCEL_PROJECT_PRODUCTION_URL", async () => {
+    // 1. Bare host (Vercel auto-populated) → https:// prepended.
     process.env.VERCEL_PROJECT_PRODUCTION_URL = "preview.vercel.app";
     await import("~~/lib/auth");
     expect(
       (betterAuthSpy.mock.calls[0]![0] as { baseURL: string }).baseURL,
     ).toBe("https://preview.vercel.app");
 
-    // 3. localhost fallback for local dev (no env vars at all).
+    // 2. Full URL including protocol (local dev override) → used as-is.
+    betterAuthSpy.mockClear();
+    vi.resetModules();
+    process.env.VERCEL_PROJECT_PRODUCTION_URL = "http://localhost:3001";
+    await import("~~/lib/auth");
+    expect(
+      (betterAuthSpy.mock.calls[0]![0] as { baseURL: string }).baseURL,
+    ).toBe("http://localhost:3001");
+
+    // 3. Variable unset → localhost:3000 default.
     betterAuthSpy.mockClear();
     vi.resetModules();
     delete process.env.VERCEL_PROJECT_PRODUCTION_URL;

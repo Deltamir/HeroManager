@@ -11,17 +11,26 @@
 
       <v-card-text class="pa-5">
         <div class="d-flex flex-column flex-sm-row ga-5">
-          <!-- Art -->
-          <CardAvatar
-            :type="card.type"
-            :name="card.name"
-            :img-url="card.imgUrl"
-            :icon-url="card.iconUrl"
-            full
-            rounded="lg"
-            :size="160"
-            class="flex-shrink-0 align-self-center align-self-sm-start detail-art"
-          />
+          <!-- Art: contain (not cover) so portrait card art is never cropped -->
+          <div class="flex-shrink-0 align-self-center align-self-sm-start detail-art">
+            <v-img
+              v-if="card.imgUrl"
+              :src="card.imgUrl"
+              :alt="card.name"
+              contain
+              width="160"
+              height="220"
+            />
+            <CardAvatar
+              v-else
+              :type="card.type"
+              :name="card.name"
+              :icon-url="card.iconUrl"
+              show-icon
+              rounded="lg"
+              :size="160"
+            />
+          </div>
 
           <!-- Details table -->
           <div class="flex-grow-1">
@@ -143,7 +152,11 @@ async function toggle() {
 
 <style scoped>
 .detail-art {
+  width: 160px;
+  border-radius: 8px;
+  overflow: hidden;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+  background: rgba(var(--v-theme-on-surface), 0.04);
 }
 
 .detail-grid {

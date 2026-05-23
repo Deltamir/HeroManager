@@ -1,3 +1,4 @@
+import pg from "pg";
 import { PrismaClient } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 
@@ -11,7 +12,8 @@ declare module "h3" {
 
 export default eventHandler(async (event) => {
   if (!prisma) {
-    const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL! });
+    const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL! });
+    const adapter = new PrismaPg(pool);
     prisma = new PrismaClient({ adapter });
   }
   event.context.prisma = prisma;

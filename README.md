@@ -159,9 +159,10 @@ DATABASE_URL="postgresql://postgres:postgres@localhost:5432/postgres"
 # Better Auth secret (≥ 32 chars — generate with: openssl rand -base64 32)
 BETTER_AUTH_SECRET="your-random-secret-here"
 
-# Public app URL — only needed locally.
-# On Vercel, VERCEL_URL (automatically injected) is used instead.
-BETTER_AUTH_URL="http://localhost:3000"
+# Public app URL — only set this locally if you need a non-default URL.
+# On Vercel, VERCEL_PROJECT_PRODUCTION_URL is injected automatically.
+# Omit entirely for standard local dev (defaults to http://localhost:3000).
+# VERCEL_PROJECT_PRODUCTION_URL="http://localhost:3001"
 ```
 
 > **DevContainer note**: inside the DevContainer, the PostgreSQL host is `db` (the Docker Compose service name), not `127.0.0.1`.
@@ -454,7 +455,7 @@ winget install Hashicorp.HCP
 
 ### `BETTER_AUTH_SECRET` missing / session error
 
-Add `BETTER_AUTH_SECRET` and `BETTER_AUTH_URL` to `.env`:
+Add `BETTER_AUTH_SECRET` to `.env`:
 
 ```bash
 # Generate a strong secret
@@ -463,7 +464,6 @@ openssl rand -base64 32
 
 ```dotenv
 BETTER_AUTH_SECRET="the-secret-generated-above"
-BETTER_AUTH_URL="http://localhost:3000"
 ```
 
 ### Port 3000 already in use
@@ -489,7 +489,7 @@ yarn prisma generate
 | ---------------------- | ----------------- | -------------------------------------------------------------------- | -------------------------------------------------------- |
 | `DATABASE_URL`         | Yes               | PostgreSQL connection URL                                            | `postgresql://postgres:postgres@localhost:5432/postgres` |
 | `BETTER_AUTH_SECRET`   | Yes               | Session encryption secret (≥ 32 chars)                               | `openssl rand -base64 32`                                |
-| `BETTER_AUTH_URL`      | Local only        | Public URL — computed automatically on Vercel via `VERCEL_URL`       | `http://localhost:3000`                                  |
+| `VERCEL_PROJECT_PRODUCTION_URL` | Local only (optional) | Public URL — set only if you need a non-default local URL. Injected automatically on Vercel. | `http://localhost:3001` |
 | `GHUB_CLIENT_ID`       | Yes (GitHub auth) | GitHub OAuth App Client ID                                           | `Ov23li...`                                              |
 | `GHUB_CLIENT_SECRET`   | Yes (GitHub auth) | GitHub OAuth App Client Secret                                       | `abc123...`                                              |
 | `TWITCH_CLIENT_ID`     | Yes (Twitch auth) | Twitch App Client ID                                                 | `xyz789...`                                              |
@@ -607,7 +607,7 @@ Config in `eslint.config.mjs`. Vue + TypeScript rules active.
    | ---------------------- | ----------------------------------------------------------- |
    | `DATABASE_URL`         | Production PostgreSQL URL (e.g. Neon, Supabase, Railway)    |
    | `BETTER_AUTH_SECRET`   | Random secret ≥ 32 chars                                    |
-   | `BETTER_AUTH_URL`      | Optional — Vercel injects `VERCEL_URL` automatically        |
+   | *(no URL variable)*    | `VERCEL_PROJECT_PRODUCTION_URL` is injected automatically   |
    | `GHUB_CLIENT_ID`       | Production GitHub OAuth App Client ID                       |
    | `GHUB_CLIENT_SECRET`   | Production GitHub OAuth App Client Secret                   |
    | `TWITCH_CLIENT_ID`     | Production Twitch App Client ID                             |

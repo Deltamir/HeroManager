@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="d-flex flex-wrap ga-4 align-center mb-4">
+    <div class="d-flex flex-wrap ga-4 align-center mb-4 pt-2">
       <v-select
         v-model="cardType"
         :items="typeItems"

@@ -19,6 +19,10 @@ const delFetch = $fetch as unknown as (
   url: string,
   options: { method: string },
 ) => Promise<{ id: string }>;
+const patchFetch = $fetch as unknown as (
+  url: string,
+  options: { method: string; body?: unknown },
+) => Promise<MatchRecord>;
 
 export const useMatchesStore = defineStore("matchesStore", {
   state: (): MatchesState => ({
@@ -63,6 +67,15 @@ export const useMatchesStore = defineStore("matchesStore", {
     async remove(id: string) {
       await delFetch(`/api/matches/${id}`, { method: "delete" });
       this.matches = this.matches.filter((m) => m.id !== id);
+    },
+
+    async update(id: string, input: MatchInput) {
+      const updated = await patchFetch(`/api/matches/${id}`, {
+        method: "patch",
+        body: input,
+      });
+      this.matches = this.matches.map((m) => (m.id === id ? updated : m));
+      return updated;
     },
   },
 

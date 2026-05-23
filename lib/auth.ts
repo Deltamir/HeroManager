@@ -36,21 +36,21 @@ import {
 // so the auth flow doesn't open its own Prisma connection pool.
 import prisma from "./prisma";
 
-// Resolve the public base URL in priority order:
-//   1. BETTER_AUTH_URL              — explicit override (if set in env)
-//   2. VERCEL_PROJECT_PRODUCTION_URL — stable production URL (only when VERCEL=1)
-//   3. localhost:3000               — fallback for local dev
-// The VERCEL guard prevents a locally-set VERCEL_PROJECT_PRODUCTION_URL from
-// being treated as an https:// origin — local dev always uses plain http.
-const onVercel = process.env.VERCEL === "1";
-const baseURL =
-  process.env.BETTER_AUTH_URL ??
-  (onVercel && process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : "http://localhost:3000");
+// Resolve the public base URL from a single variable:
+//   - Vercel: VERCEL_PROJECT_PRODUCTION_URL is auto-populated as a bare host
+//             (e.g. "myapp.vercel.app") → https:// is prepended.
+//   - Local override: set VERCEL_PROJECT_PRODUCTION_URL to a full URL that
+//             already includes the protocol (e.g. "http://localhost:3001")
+//             → used as-is so http:// works for local dev on a non-default port.
+//   - Local default: nothing set → http://localhost:3000.
+const rawUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+const baseURL = rawUrl
+  ? rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`
+  : "http://localhost:3000";
 
 // Accept requests from all Vercel URL variants (branch previews, production).
 // Only populated when actually running on Vercel.
+const onVercel = process.env.VERCEL === "1";
 const vercelTrustedOrigins = onVercel
   ? [
       process.env.VERCEL_PROJECT_PRODUCTION_URL
