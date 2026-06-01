@@ -4674,7 +4674,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/compiler-dom@npm:3.5.34, @vue/compiler-dom@npm:^3.5.0":
+"@vue/compiler-dom@npm:3.5.34":
   version: 3.5.34
   resolution: "@vue/compiler-dom@npm:3.5.34"
   dependencies:
@@ -4684,7 +4684,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/compiler-dom@npm:3.5.35":
+"@vue/compiler-dom@npm:3.5.35, @vue/compiler-dom@npm:^3.5.35":
   version: 3.5.35
   resolution: "@vue/compiler-dom@npm:3.5.35"
   dependencies:
@@ -9356,7 +9356,7 @@ __metadata:
     "@vee-validate/yup": "npm:^4.15.1"
     "@vitest/coverage-v8": "npm:^4.1.7"
     "@vitest/ui": "npm:^4.1.7"
-    "@vue/compiler-dom": "npm:^3.5.0"
+    "@vue/compiler-dom": "npm:^3.5.35"
     "@vue/test-utils": "npm:^2.4.10"
     better-auth: "npm:^1.6.13"
     dotenv: "npm:^17.4.2"
