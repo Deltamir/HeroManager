@@ -71,6 +71,10 @@
     "vue-eslint-parser": "^10.4.1",
     "vue-tsc": "^3.3.11"
   },
+  "resolutions": {
+    "mysql2": "^3.24.5",
+    "deepmerge-ts": "^8.0.2"
+  },
   "lint-staged": {
     "*.{ts,vue,js,mjs,cjs}": [
       "eslint --fix"
