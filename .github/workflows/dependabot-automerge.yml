@@ -1,23 +1,92 @@
 name: Dependabot Auto-merge
 
-on:
-  pull_request:
+# Two-step flow so Dependabot PRs are merged only AFTER CI passes:
+#   1. `label`  (pull_request)  — tag non-major Dependabot PRs with `automerge`.
+#   2. `merge`  (workflow_run)  — when "PR Checks" completes successfully on a
+#      labelled Dependabot PR, merge it, pinned to the exact commit CI tested.
+#
+# Why not `gh pr merge --auto`? Without required status checks in branch
+# protection, `--auto` merges immediately, before any CI job has finished.
+#
+# Major version bumps are never auto-merged: they stay open for manual review.
+#
+# Note: `workflow_run` always uses the workflow file from the default branch,
+# so step 2 only takes effect once this file is on `main`.
 
-concurrency:
-  group: dependabot-automerge-${{ github.event.pull_request.number }}
-  cancel-in-progress: true
+"on":
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_run:
+    workflows: ["PR Checks"]
+    types: [completed]
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 jobs:
-  auto-merge:
+  label:
+    name: Label for auto-merge
+    if: github.event_name == 'pull_request' && github.event.pull_request.user.login == 'dependabot[bot]'
     runs-on: ubuntu-latest
-    if: github.actor == 'dependabot[bot]'
+    permissions:
+      pull-requests: write
+      issues: write # creating the `automerge` label
     steps:
-      - name: Enable auto-merge
-        run: gh pr merge --auto --merge "$PR_URL"
+      - name: Fetch Dependabot metadata
+        id: meta
+        uses: dependabot/fetch-metadata@v3.1.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Label non-major updates
+        if: steps.meta.outputs.update-type != 'version-update:semver-major'
+        run: |
+          gh label create automerge --repo "$REPO" --color 0E8A16 \
+            --description "Dependabot PR merged automatically once CI passes" 2>/dev/null || true
+          gh pr edit "$PR_URL" --add-label automerge
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
+          REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Flag major updates for manual review
+        if: steps.meta.outputs.update-type == 'version-update:semver-major'
+        run: gh pr edit "$PR_URL" --remove-label automerge 2>/dev/null || true
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  merge:
+    name: Merge after CI
+    if: >-
+      github.event_name == 'workflow_run' &&
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.actor.login == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    concurrency:
+      group: dependabot-merge-${{ github.event.workflow_run.head_branch }}
+      cancel-in-progress: true
+    steps:
+      - name: Merge if labelled and still at the tested commit
+        run: |
+          set -euo pipefail
+          pr=$(gh pr list --repo "$REPO" --head "$HEAD_BRANCH" --state open \
+                 --json number,author,labels \
+                 --jq '.[] | select(.author.login == "app/dependabot") | select(any(.labels[]; .name == "automerge")) | .number' \
+               | head -n1)
+          if [ -z "$pr" ]; then
+            echo "No open, labelled Dependabot PR for $HEAD_BRANCH — nothing to merge."
+            exit 0
+          fi
+          echo "CI passed on $HEAD_SHA — merging #$pr"
+          # --match-head-commit refuses the merge if new commits landed after CI ran.
+          gh pr merge "$pr" --repo "$REPO" --merge --match-head-commit "$HEAD_SHA"
+        env:
+          REPO: ${{ github.repository }}
+          HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
