@@ -32,7 +32,7 @@ Thanks for your interest in contributing! This document explains the workflow.
    yarn prisma db push
    ```
 
-4. **Create a feature branch** from `master`:
+4. **Create a feature branch** from `main`:
    ```bash
    git checkout -b feat/auth/your-feature-name
    ```
@@ -68,7 +68,7 @@ The `commit-msg` hook rejects commits that don't follow this format.
 
 ## Opening a pull request
 
-1. Push your branch and open a PR against `master`.
+1. Push your branch and open a PR against `main`.
 2. Fill in the PR template.
 3. CI will run automatically: lint, typecheck, unit tests, E2E, security scan, and CodeQL.
 4. Claude AI will post an automated review — feel free to discuss its comments.

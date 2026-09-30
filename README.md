@@ -6,10 +6,10 @@ The goal: provide a solid, opinionated starting point so you don't have to recon
 
 ---
 
-[![PR Checks](https://github.com/deltamir/webdevbootstrap/actions/workflows/pr-checks.yml/badge.svg?branch=master)](https://github.com/deltamir/webdevbootstrap/actions/workflows/pr-checks.yml)
-[![Main Maintenance](https://github.com/deltamir/webdevbootstrap/actions/workflows/main-maintenance.yml/badge.svg)](https://github.com/deltamir/webdevbootstrap/actions/workflows/main-maintenance.yml)
-[![CodeQL](https://github.com/deltamir/webdevbootstrap/actions/workflows/codeql.yml/badge.svg)](https://github.com/deltamir/webdevbootstrap/actions/workflows/codeql.yml)
-[![codecov](https://codecov.io/gh/deltamir/webdevbootstrap/branch/master/graph/badge.svg)](https://codecov.io/gh/deltamir/webdevbootstrap)
+[![PR Checks](https://github.com/Deltamir/HeroManager/actions/workflows/pr-checks.yml/badge.svg?branch=main)](https://github.com/Deltamir/HeroManager/actions/workflows/pr-checks.yml)
+[![Main Maintenance](https://github.com/Deltamir/HeroManager/actions/workflows/main-maintenance.yml/badge.svg)](https://github.com/Deltamir/HeroManager/actions/workflows/main-maintenance.yml)
+[![CodeQL](https://github.com/Deltamir/HeroManager/actions/workflows/codeql.yml/badge.svg)](https://github.com/Deltamir/HeroManager/actions/workflows/codeql.yml)
+[![codecov](https://codecov.io/gh/Deltamir/HeroManager/branch/main/graph/badge.svg)](https://codecov.io/gh/Deltamir/HeroManager)
 [![Node.js 22+](https://img.shields.io/badge/node-%3E%3D22-green)](https://nodejs.org/)
 [![Yarn 4.x](https://img.shields.io/badge/yarn-4.x-blue)](https://yarnpkg.com/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
@@ -60,7 +60,7 @@ There are two ways to launch the development environment:
 
    ```bash
    git clone <repo-url>
-   cd WebDevBootstrap
+   cd HeroManager
    ```
 
 2. Open it in VS Code, then accept the **"Reopen in Container"** notification
@@ -79,7 +79,7 @@ There are two ways to launch the development environment:
 
 ### Launch via GitHub Codespaces
 
-1. On GitHub, click **Code → Codespaces → Create codespace on master**
+1. On GitHub, click **Code → Codespaces → Create codespace on main**
 2. Wait for the container to be created (about 2-3 minutes)
 3. `yarn install` and `yarn prisma generate` run automatically (`corepack enable` is already in the image)
 4. Continue at the [Environment variables configuration](#environment-variables-configuration) step
@@ -106,7 +106,7 @@ There are two ways to launch the development environment:
 
    ```bash
    git clone <repo-url>
-   cd WebDevBootstrap
+   cd HeroManager
    ```
 
 2. **Enable corepack and install dependencies:**
@@ -366,13 +366,15 @@ yarn secrets:scan
 
 ## CI/CD
 
-| Workflow              | Trigger                                  | Jobs                                                                                       |
-| --------------------- | ---------------------------------------- | ------------------------------------------------------------------------------------------ |
-| `pr-checks.yml`       | PR + push `master`                       | Lint · TypeCheck · Unit tests + coverage · E2E Playwright · Dependency Review · Gitleaks |
-| `main-maintenance.yml`| Push `master` + Monday schedule (0:00)   | Gitleaks · Yarn audit (opens an issue if vulnerabilities detected + Dependabot links)    |
-| `codeql.yml`          | PR + push `master` + Sunday schedule     | SAST analysis for JavaScript/TypeScript                                                  |
-| `prod-ops.yml`        | Push `master` + release                  | Smoke tests · CycloneDX SBOM generation + attestation                                    |
-| `claude.yml`          | `@claude` in a PR comment                | On-demand review by Claude AI (OAuth token auth only)                                    |
+| Workflow                  | Trigger                                              | Jobs                                                                                      |
+| ------------------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `pr-checks.yml`           | PR                                                   | Lint · Typecheck · Unit tests + coverage · E2E Playwright · Dependency Review · Gitleaks |
+| `main-maintenance.yml`    | Push `main` + Monday schedule (0:00 UTC)             | Gitleaks · Yarn audit (opens an issue if vulnerabilities detected + Dependabot links)    |
+| `codeql.yml`              | PR + push `main` (source files) + Sunday schedule    | Extended CodeQL SAST analysis for JavaScript/TypeScript                                  |
+| `prod-ops.yml`            | Production deployment + push `main` + release        | Production smoke tests · CycloneDX SBOM generation + attestation                         |
+| `dependabot-automerge.yml`| Dependabot PR + completion of PR Checks              | Labels non-major Dependabot PRs, merges them only after PR Checks pass                   |
+| `claude-code-review.yml`  | PR opened / updated                                  | Automated Claude AI code review                                                           |
+| `claude.yml`              | `@claude` in an issue or PR comment                  | On-demand Claude AI assistance                                                            |
 
 **Artifacts available in the GitHub Actions UI:**
 
@@ -385,7 +387,7 @@ yarn secrets:scan
 ## Project structure
 
 ```
-WebDevBootstrap/
+HeroManager/
 ├── .devcontainer/          # DevContainer config (Docker Compose + Dockerfile)
 ├── components/             # Reusable Vue components
 ├── lib/
@@ -539,7 +541,7 @@ User → /login → picks a provider (GitHub or Twitch)
 
 ### Branches (GitHub Flow)
 
-`master` is the only stable branch, always deployable. All development goes through a short-lived branch and a PR.
+`main` is the only stable branch, always deployable. All development goes through a short-lived branch and a PR.
 
 | Type          | Naming                       | Example                       |
 | ------------- | ---------------------------- | ----------------------------- |

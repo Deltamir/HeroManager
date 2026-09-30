@@ -166,14 +166,19 @@ Valid types: `feat` `fix` `docs` `style` `refactor` `test` `chore` `ci` `perf` `
 
 ## CI/CD Workflows
 
-| Workflow       | Triggers                    | Jobs                                                   |
-| -------------- | --------------------------- | ------------------------------------------------------ |
-| `ci.yml`       | PR + push master            | lint · typecheck · unit tests + coverage · build       |
-| `e2e.yml`      | PR only                     | Playwright with ephemeral PostgreSQL (no prod secrets) |
-| `security.yml` | PR + push master + weekly   | Gitleaks · Dependency Review · npm audit               |
-| `codeql.yml`   | PR + push master + weekly   | SAST JavaScript/TypeScript analysis                    |
-| `sbom.yml`     | push master + release       | CycloneDX SBOM generation + attestation                |
-| `claude.yml`   | PR (auto) + @claude comment | Claude AI code review                                  |
+| Workflow                   | Triggers                                        | Jobs                                                                                          |
+| -------------------------- | ----------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `pr-checks.yml`            | PR                                              | lint · typecheck · unit tests + coverage · Playwright E2E (ephemeral PostgreSQL) · Dependency Review · Gitleaks |
+| `main-maintenance.yml`     | push main + weekly (Mon)                        | Gitleaks full-history scan · yarn audit (opens an issue on findings)                         |
+| `codeql.yml`               | PR + push main (source files) + weekly (Sun)    | Extended CodeQL SAST (`upload: never`; GitHub Default Setup owns the Security tab alerts)    |
+| `prod-ops.yml`             | production deployment + push main + release     | production smoke tests · CycloneDX SBOM generation + attestation                             |
+| `dependabot-automerge.yml` | Dependabot PR + PR Checks completed             | labels non-major Dependabot PRs, merges them only after PR Checks pass                       |
+| `claude-code-review.yml`   | PR opened / updated                             | Claude AI code review                                                                         |
+| `claude.yml`               | @claude in an issue or PR comment               | on-demand Claude AI assistance                                                                |
+
+Required status checks on `main`: `Lint`, `Typecheck`, `Unit Tests`, `Playwright E2E`, `Dependency Review`, `Secret Scan (Gitleaks)`.
+
+Third-party actions are pinned to commit SHAs (tag kept as a comment so Dependabot still bumps them); every workflow sets an explicit `permissions` block.
 
 All workflows use `concurrency` groups to cancel stale runs on the same ref.
 
