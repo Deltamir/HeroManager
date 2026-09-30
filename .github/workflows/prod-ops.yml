@@ -3,7 +3,7 @@ name: Production Operations
 "on":
   deployment_status:
   push:
-    branches: [master]
+    branches: [main]
   release:
     types: [published]
 
@@ -73,7 +73,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Generate and upload SBOM
-        uses: anchore/sbom-action@v0
+        uses: anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610 # v0
         with:
           format: cyclonedx-json
           output-file: sbom.cdx.json

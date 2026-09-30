@@ -21,6 +21,7 @@ describe("usePreferencesStore", () => {
   it("accepts dark theme assignment", () => {
     const store = usePreferencesStore();
     store.theme = "light";
+    expect(store.theme).toBe("light");
     store.theme = "dark";
     expect(store.theme).toBe("dark");
   });
