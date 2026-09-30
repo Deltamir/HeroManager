@@ -23,7 +23,7 @@ const fetchers = new Map<string, AvatarFetcher>([
         headers: {
           Authorization: `Bearer ${accessToken}`,
           Accept: "application/vnd.github+json",
-          "User-Agent": "WebDevBootstrap",
+          "User-Agent": "HeroManager",
         },
       });
       if (!res.ok) return null;

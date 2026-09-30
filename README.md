@@ -1,4 +1,4 @@
-# WebDevBootstrap
+# HeroManager
 
 Full-stack boilerplate to quickly bootstrap a modern web project. It ships a complete foundation: multi-provider OAuth authentication (GitHub + Twitch), PostgreSQL persistence via Prisma, a Vuetify UI, Pinia state management, form validation, and secure secret injection via HCP Vault Secrets.
 
@@ -123,7 +123,7 @@ There are two ways to launch the development environment:
    psql -U postgres
 
    # Inside psql, create the database
-   CREATE DATABASE webdevbootstrap;
+   CREATE DATABASE heromanager;
    \q
    ```
 
@@ -219,7 +219,7 @@ In the HCP console:
 In the HCP project:
 
 1. Go to **Vault Secrets**
-2. Create a new **application** (e.g. `webdevbootstrap`)
+2. Create a new **application** (e.g. `heromanager`)
 3. Add the secrets: `GHUB_CLIENT_ID`, `GHUB_CLIENT_SECRET`, `TWITCH_CLIENT_ID`, `TWITCH_CLIENT_SECRET`
 
 ### 4. Authenticate via the CLI
@@ -250,7 +250,7 @@ HCP automatically injects the secrets as environment variables when the process 
 1. Go to https://github.com/settings/developers
 2. **OAuth Apps → New OAuth App**
 3. Fill in:
-   - **Application name**: WebDevBootstrap (dev)
+   - **Application name**: HeroManager (dev)
    - **Homepage URL**: `http://localhost:3000`
    - **Authorization callback URL**: `http://localhost:3000/api/auth/callback/github`
 4. Copy the **Client ID** and generate a **Client Secret**
@@ -261,7 +261,7 @@ HCP automatically injects the secrets as environment variables when the process 
 1. Go to https://dev.twitch.tv/console
 2. **Applications → Register Your Application**
 3. Fill in:
-   - **Name**: WebDevBootstrap (dev)
+   - **Name**: HeroManager (dev)
    - **OAuth Redirect URLs**: `http://localhost:3000/api/auth/callback/twitch`
    - **Category**: Website Integration
 4. Copy the **Client ID** and generate a **Client Secret**

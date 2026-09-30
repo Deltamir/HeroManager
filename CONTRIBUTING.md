@@ -1,4 +1,4 @@
-# Contributing to WebDevBootstrap
+# Contributing to HeroManager
 
 Thanks for your interest in contributing! This document explains the workflow.
 
@@ -12,8 +12,8 @@ Thanks for your interest in contributing! This document explains the workflow.
 1. **Fork** the repository on GitHub and clone your fork:
 
    ```bash
-   git clone https://github.com/<your-username>/WebDevBootstrap.git
-   cd WebDevBootstrap
+   git clone https://github.com/<your-username>/HeroManager.git
+   cd HeroManager
    ```
 
 2. **Install dependencies** (also sets up git hooks via Husky):

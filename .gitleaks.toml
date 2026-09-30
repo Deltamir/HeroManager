@@ -1,5 +1,5 @@
 # Gitleaks configuration — extends the default ruleset
-title = "WebDevBootstrap gitleaks config"
+title = "HeroManager gitleaks config"
 
 [extend]
 # Use the default ruleset as the base
