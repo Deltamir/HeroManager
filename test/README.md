@@ -1,6 +1,6 @@
-# Testing strategy — WebDevBootstrap
+# Testing strategy — HeroManager
 
-A KISS guide to every test in this repo. **WebDevBootstrap is a template**,
+A KISS guide to every test in this repo. **HeroManager started from a template**,
 so the tests in this folder are deliberately written as **generic examples**
 of the patterns a downstream project will need — never as exhaustive coverage
 of any particular endpoint or store. Forks should keep these as scaffolding,
