@@ -91,3 +91,4 @@ Please report them privately via [GitHub Security Advisories](../../security/adv
 | `yarn secrets:scan`  | Gitleaks full-repo scan                      |
 | `yarn audit`         | npm audit for known CVEs                     |
 | `yarn sbom`          | Generate CycloneDX SBOM                      |
+
