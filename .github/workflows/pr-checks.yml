@@ -127,6 +127,9 @@ jobs:
         with:
           fail-on-severity: critical
           allow-licenses: MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC, MPL-2.0, Unlicense, 0BSD, CC0-1.0, MIT-0
+          # Prisma Studio (dev-only CLI UI) deps: elkjs is EPL-2.0, @visx/vendor declares "MIT and ISC",
+          # robust-predicates is "public domain AND Unlicense".
+          allow-dependencies-licenses: pkg:npm/elkjs, pkg:npm/%40visx/vendor, pkg:npm/robust-predicates
           comment-summary-in-pr: always
 
   gitleaks:

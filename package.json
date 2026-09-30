@@ -29,8 +29,8 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.11.3",
-    "@prisma/adapter-pg": "~7.8.0",
-    "@prisma/client": "~7.8.0",
+    "@prisma/adapter-pg": "^7.10.0",
+    "@prisma/client": "^7.10.0",
     "@vee-validate/nuxt": "^4.15.1",
     "@vee-validate/rules": "^4.15.1",
     "@vee-validate/yup": "^4.15.1",
@@ -64,7 +64,7 @@
     "happy-dom": "^20.10.3",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.7",
-    "prisma": "~7.8.0",
+    "prisma": "^7.10.0",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.61.0",
     "vitest": "^5.0.2",
@@ -73,9 +73,7 @@
   },
   "resolutions": {
     "mysql2": "^3.24.5",
-    "deepmerge-ts": "^8.0.2",
-    "@hono/node-server": "^1.19.15",
-    "valibot": "^1.5.0"
+    "deepmerge-ts": "^8.0.2"
   },
   "lint-staged": {
     "*.{ts,vue,js,mjs,cjs}": [
