@@ -3,7 +3,7 @@ name: Production Operations
 "on":
   deployment_status:
   push:
-    branches: [master]
+    branches: [main]
   release:
     types: [published]
 

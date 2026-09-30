@@ -2,7 +2,7 @@ name: Main and Scheduled Maintenance
 
 "on":
   push:
-    branches: [master]
+    branches: [main]
   schedule:
     - cron: "0 0 * * 1"
 
