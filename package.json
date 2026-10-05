@@ -52,7 +52,7 @@
     "@eslint/js": "^10.0.1",
     "@nuxt/eslint": "^1.16.0",
     "@nuxt/test-utils": "^4.3.2",
-    "@playwright/test": "^1.60.0",
+    "@playwright/test": "^1.63.0",
     "@vitest/coverage-v8": "^5.0.2",
     "@vitest/ui": "^5.0.2",
     "@vue/compiler-dom": "^3.5.38",
