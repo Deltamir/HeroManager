@@ -790,6 +790,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@commitlint/config-conventional@npm:^21.2.4":
+  version: 21.2.4
+  resolution: "@commitlint/config-conventional@npm:21.2.4"
+  dependencies:
+    "@commitlint/types": "npm:^21.2.3"
+    conventional-changelog-conventionalcommits: "npm:^10.0.0"
+  checksum: 10c0/cac1b92fc3f2d6bb7b600434c1597ff5607347157ac4bd8b3a9e4d7aa91db153af7e8d6a884d7f736b1b077cf934b957407204483b92146f16b23bead5261837
+  languageName: node
+  linkType: hard
+
 "@commitlint/config-validator@npm:^21.2.3":
   version: 21.2.3
   resolution: "@commitlint/config-validator@npm:21.2.3"
@@ -9442,7 +9452,7 @@ __metadata:
   resolution: "nuxt-app@workspace:."
   dependencies:
     "@commitlint/cli": "npm:^21.2.3"
-    "@commitlint/config-conventional": "npm:^21.2.3"
+    "@commitlint/config-conventional": "npm:^21.2.4"
     "@eslint/js": "npm:^10.0.1"
     "@nuxt/eslint": "npm:^1.16.0"
     "@nuxt/test-utils": "npm:^4.3.2"
