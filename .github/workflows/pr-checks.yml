@@ -129,12 +129,12 @@ jobs:
       - uses: actions/dependency-review-action@v5
         with:
           fail-on-severity: critical
-          allow-licenses: MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC, MPL-2.0, Unlicense, 0BSD, CC0-1.0, MIT-0
+          # BlueOak-1.0.0: permissive, OSI-approved; used by most isaacs packages (minimatch, glob, lru-cache…).
+          allow-licenses: MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC, MPL-2.0, Unlicense, 0BSD, CC0-1.0, MIT-0, BlueOak-1.0.0
           # Prisma Studio (dev-only CLI UI) deps: elkjs is EPL-2.0, @visx/vendor declares "MIT and ISC",
           # robust-predicates is "public domain AND Unlicense".
-          # Long-standing transitive deps already on main: minimatch / glob are BlueOak-1.0.0
-          # (permissive, OSI-approved), caniuse-lite (browserslist data) is CC-BY-4.0.
-          allow-dependencies-licenses: pkg:npm/elkjs, pkg:npm/%40visx/vendor, pkg:npm/robust-predicates, pkg:npm/minimatch, pkg:npm/glob, pkg:npm/caniuse-lite
+          # caniuse-lite (browserslist data, transitive via autoprefixer/browserslist) is CC-BY-4.0.
+          allow-dependencies-licenses: pkg:npm/elkjs, pkg:npm/%40visx/vendor, pkg:npm/robust-predicates, pkg:npm/caniuse-lite
           comment-summary-in-pr: always
 
   gitleaks:
