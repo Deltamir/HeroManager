@@ -61,7 +61,7 @@
     "eslint-plugin-security": "^4.2.0",
     "eslint-plugin-vue": "^10.12.0",
     "globals": "^17.13.0",
-    "happy-dom": "^20.14.6",
+    "happy-dom": "^21.0.4",
     "husky": "^9.1.7",
     "lint-staged": "^17.6.0",
     "prisma": "^7.10.1",
