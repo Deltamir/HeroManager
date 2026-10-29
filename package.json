@@ -34,6 +34,7 @@
     "@vee-validate/nuxt": "^4.15.1",
     "@vee-validate/rules": "^4.15.1",
     "@vee-validate/yup": "^4.15.1",
+    "@vue/devtools-api": "^8.2.1",
     "better-auth": "~1.7.13",
     "dotenv": "^18.0.9",
     "nuxt": "^4.6.2",
