@@ -24,6 +24,8 @@ jobs:
       - uses: ./.github/actions/setup-yarn
       - name: Run lint
         run: yarn lint
+      - name: Check singleton packages in yarn.lock
+        run: yarn check:singletons
 
   typecheck:
     name: Typecheck
