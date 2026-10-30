@@ -23,6 +23,7 @@
     "typecheck": "nuxt typecheck",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "check:singletons": "node scripts/check-singletons.mjs",
     "audit": "yarn npm audit --all --recursive",
     "sbom": "npx --yes @anchore/syft . -o cyclonedx-json=sbom.cdx.json",
     "secrets:scan": "gitleaks detect --source . --verbose"
@@ -42,7 +43,7 @@
     "pinia": "^4.1.0",
     "pinia-plugin-persistedstate": "^4.7.1",
     "resend": "^6.34.1",
-    "vue": "latest",
+    "vue": "^3.5.44",
     "vue-router": "^5.4.0",
     "vuetify-nuxt-module": "^0.19.5",
     "yup": "^1.7.1"
