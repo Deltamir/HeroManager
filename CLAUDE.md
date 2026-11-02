@@ -106,7 +106,8 @@ const prisma = event.context.prisma;
 | `GHUB_CLIENT_ID` / `GHUB_CLIENT_SECRET`     | `.env` or HCP | Use `yarn dev:hcp` to inject from HCP Vault Secrets                                                       |
 | `TWITCH_CLIENT_ID` / `TWITCH_CLIENT_SECRET` | `.env` or HCP | Same as above                                                                                             |
 | `RESEND_API_KEY`                            | `.env` or HCP | Resend API key — sends the magic-link sign-in email                                                       |
-| `EMAIL_FROM`                                | `.env` or HCP | Magic-link sender address — must be a verified Resend sender/domain                                       |
+| `EMAIL_FROM`                                | `.env` or HCP | Magic-link sender address — must be a verified Resend sender/domain. Required in production (sending throws without it)              |
+| `EMAIL_CAPTURE_FILE`                        | E2E only      | Writes emails as JSON lines to this path instead of Resend (set by `playwright.config.ts`). Refused on Vercel |
 
 ### DevContainer
 
@@ -168,10 +169,11 @@ Valid types: `feat` `fix` `docs` `style` `refactor` `test` `chore` `ci` `perf` `
 
 | Workflow                   | Triggers                                        | Jobs                                                                                          |
 | -------------------------- | ----------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `pr-checks.yml`            | PR                                              | lint · typecheck · unit tests + coverage · Playwright E2E (ephemeral PostgreSQL) · Dependency Review · Gitleaks |
-| `main-maintenance.yml`     | push main + weekly (Mon)                        | Gitleaks full-history scan · yarn audit (opens an issue on findings)                         |
+| `pr-checks.yml`            | PR + merge queue + push main                    | lint (+ singleton / peer / dedupe checks) · actionlint · typecheck · unit tests + coverage · Playwright E2E (ephemeral PostgreSQL) · Dependency Review · Gitleaks |
+| `neon-preview-cleanup.yml` | PR closed                                       | deletes the Neon `preview/<branch>` branch (needs `NEON_PROJECT_ID` variable + `NEON_API_KEY` secret)  |
+| `main-maintenance.yml`     | push main + weekly (Mon)                        | Gitleaks full-history scan · yarn audit · Neon branch count (each opens an issue on findings) |
 | `codeql.yml`               | PR + push main (source files) + weekly (Sun)    | Extended CodeQL SAST (`upload: never`; GitHub Default Setup owns the Security tab alerts)    |
-| `prod-ops.yml`             | production deployment + push main + release     | production smoke tests · CycloneDX SBOM generation + attestation                             |
+| `prod-ops.yml`             | production deployment + push main + release     | production smoke tests (incl. `/api/health`: DB schema + required env) · CycloneDX SBOM generation + attestation |
 | `dependabot-automerge.yml` | Dependabot PR + PR Checks completed             | labels non-major Dependabot PRs, merges them only after PR Checks pass                       |
 | `claude-code-review.yml`   | PR opened / updated                             | Claude AI code review                                                                         |
 | `claude.yml`               | @claude in an issue or PR comment               | on-demand Claude AI assistance                                                                |

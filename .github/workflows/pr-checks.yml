@@ -2,10 +2,18 @@ name: PR Checks
 
 "on":
   pull_request:
+  # Merge queue: re-test each PR on the main it will actually produce, so two
+  # green PRs touching yarn.lock can't combine into a red main. Inert until
+  # the queue is enabled in the branch protection of main.
+  merge_group:
+  # Safety net while the merge queue is off: main itself gets the full suite.
+  push:
+    branches: [main]
 
 concurrency:
   group: pr-${{ github.ref }}
-  cancel-in-progress: true
+  # Never cancel a run on main: it is the only check of the merged result.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 permissions:
   contents: read
@@ -24,6 +32,31 @@ jobs:
       - uses: ./.github/actions/setup-yarn
       - name: Run lint
         run: yarn lint
+      - name: Check singleton packages in yarn.lock
+        run: yarn check:singletons
+      - name: Check peer dependencies declared by the project
+        run: |
+          yarn install --immutable --mode=skip-build > install.log 2>&1
+          node scripts/check-peers.mjs
+      # Warning only: a global dedupe currently touches ~1 400 lockfile lines.
+      # Flip to blocking once a dedupe PR has landed.
+      - name: Check for dedupable packages (warning)
+        continue-on-error: true
+        run: yarn dedupe --check
+
+  actionlint:
+    # Not a required check yet: it has never run on the existing workflows,
+    # so its first findings must not block every PR.
+    name: Workflow Lint (actionlint)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-go@v6
+        with:
+          go-version: stable
+      # Pinned version; the Go checksum database verifies the module.
+      - name: Run actionlint
+        run: go run github.com/rhysd/actionlint/cmd/actionlint@v1.7.7
 
   typecheck:
     name: Typecheck
@@ -120,6 +153,8 @@ jobs:
 
   dependency-review:
     name: Dependency Review
+    # Diffs a PR against its base: nothing to compare on push / merge queue.
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -139,6 +174,9 @@ jobs:
 
   gitleaks:
     name: Secret Scan (Gitleaks)
+    # gitleaks-action handles pull_request and push; main-maintenance.yml
+    # already scans main on push, so only PRs need it here.
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       contents: read
