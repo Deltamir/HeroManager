@@ -20,6 +20,9 @@ const SINGLETONS = new Set([
   "pinia",
   "eslint-plugin-vue",
   "@prisma/client",
+  // @prisma/adapter-pg checks `pool instanceof pg.Pool`: a second copy of pg
+  // makes it treat our Pool as a config and every DB connection crashes.
+  "pg",
   "prisma",
   "better-auth",
   "@better-auth/core",
