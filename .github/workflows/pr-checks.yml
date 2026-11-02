@@ -24,6 +24,17 @@ jobs:
       - uses: ./.github/actions/setup-yarn
       - name: Run lint
         run: yarn lint
+      - name: Check singleton packages in yarn.lock
+        run: yarn check:singletons
+      - name: Check peer dependencies declared by the project
+        run: |
+          yarn install --immutable --mode=skip-build > install.log 2>&1
+          node scripts/check-peers.mjs
+      # Warning only: a global dedupe currently touches ~1 400 lockfile lines.
+      # Flip to blocking once a dedupe PR has landed.
+      - name: Check for dedupable packages (warning)
+        continue-on-error: true
+        run: yarn dedupe --check
 
   typecheck:
     name: Typecheck
