@@ -83,7 +83,10 @@ export default defineConfig({
           VERCEL_PROJECT_PRODUCTION_URL:
             process.env.VERCEL_PROJECT_PRODUCTION_URL || "http://localhost:3000",
           // Magic-link emails go to a file the specs read back — never Resend.
+          // The Resend values below only satisfy /api/health's config check.
           EMAIL_CAPTURE_FILE,
+          RESEND_API_KEY: process.env.RESEND_API_KEY || "re_e2e_placeholder",
+          EMAIL_FROM: process.env.EMAIL_FROM || "e2e@example.com",
           // Placeholder OAuth apps: the specs only check the authorize URL,
           // no provider is ever contacted.
           GHUB_CLIENT_ID: process.env.GHUB_CLIENT_ID || "e2e-github-client-id",
