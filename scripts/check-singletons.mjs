@@ -10,8 +10,6 @@
 // Usage: node scripts/check-singletons.mjs   (run in the CI Lint job)
 import { readFileSync } from "node:fs";
 
-// Stateless helpers (e.g. @better-auth/utils) are left out on purpose: a
-// duplicate there is harmless and would only make the check noisy.
 const SINGLETONS = new Set([
   "vue",
   "@vue/runtime-core",
@@ -25,6 +23,7 @@ const SINGLETONS = new Set([
   "prisma",
   "better-auth",
   "@better-auth/core",
+  "@better-auth/utils",
 ]);
 
 // Berry lockfile: every entry carries `resolution: "<name>@npm:<version>"`.
