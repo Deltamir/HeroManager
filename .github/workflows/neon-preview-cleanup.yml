@@ -1,0 +1,50 @@
+name: Neon Preview Cleanup
+
+# The Vercel–Neon integration creates one Neon branch per preview
+# (`preview/<git branch>`) but never deletes it. At the plan's branch limit
+# every preview fails with "Resource provisioning failed" (#115, comment 10).
+# This deletes the preview branch when its PR is closed or merged.
+#
+# Setup (inert until done): repository variable NEON_PROJECT_ID and secret
+# NEON_API_KEY (Neon console → Account settings → API keys).
+#
+# The Neon API is called directly instead of through
+# neondatabase/delete-branch-action, which installs an unpinned neonctl and
+# interpolates the branch name into its shell script.
+
+"on":
+  pull_request:
+    types: [closed]
+
+concurrency:
+  group: neon-cleanup-${{ github.head_ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  delete-preview-branch:
+    name: Delete Neon preview branch
+    # Fork PRs get no secrets, and Vercel builds no preview for them anyway.
+    if: >-
+      vars.NEON_PROJECT_ID != '' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete preview/<head branch>
+        env:
+          NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
+          PROJECT_ID: ${{ vars.NEON_PROJECT_ID }}
+          BRANCH_NAME: preview/${{ github.head_ref }}
+        run: |
+          set -euo pipefail
+          api="https://console.neon.tech/api/v2/projects/$PROJECT_ID/branches"
+          id=$(curl -fsS -H "Authorization: Bearer $NEON_API_KEY" "$api" \
+                 | jq -r --arg name "$BRANCH_NAME" '.branches[] | select(.name == $name) | .id')
+          if [ -z "$id" ]; then
+            echo "No Neon branch named $BRANCH_NAME — nothing to delete."
+            exit 0
+          fi
+          curl -fsS -X DELETE -H "Authorization: Bearer $NEON_API_KEY" "$api/$id" > /dev/null
+          echo "Deleted Neon branch $BRANCH_NAME ($id)."

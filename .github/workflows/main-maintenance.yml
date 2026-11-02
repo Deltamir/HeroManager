@@ -86,3 +86,47 @@ jobs:
                 body
               });
             }
+
+  neon-branches:
+    # Previews broke silently for 3 days when the project hit its Neon branch
+    # limit. Open an issue before that happens. Inert without NEON_PROJECT_ID.
+    name: Neon branch count
+    if: vars.NEON_PROJECT_ID != ''
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Count Neon branches
+        id: count
+        env:
+          NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
+          PROJECT_ID: ${{ vars.NEON_PROJECT_ID }}
+        run: |
+          set -euo pipefail
+          count=$(curl -fsS -H "Authorization: Bearer $NEON_API_KEY"                     "https://console.neon.tech/api/v2/projects/$PROJECT_ID/branches"                   | jq '.branches | length')
+          echo "Neon branches: $count"
+          echo "count=$count" >> "$GITHUB_OUTPUT"
+      - name: Open an issue near the branch limit
+        # Free plan limit is 10 branches per project — adjust if the plan changes.
+        if: fromJSON(steps.count.outputs.count) >= 8
+        uses: actions/github-script@v9
+        env:
+          COUNT: ${{ steps.count.outputs.count }}
+        with:
+          script: |
+            const title = 'Neon: project is close to its branch limit';
+            const { data: open } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+            });
+            if (open.some(i => i.title === title)) return;
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              body: `The Neon project has ${process.env.COUNT} branches (limit: 10 on the free plan). ` +
+                'At the limit every Vercel preview fails with "Resource provisioning failed". ' +
+                'Delete orphaned `preview/*` branches in the Neon console.',
+            });

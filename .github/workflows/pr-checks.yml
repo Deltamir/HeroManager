@@ -2,10 +2,18 @@ name: PR Checks
 
 "on":
   pull_request:
+  # Merge queue: re-test each PR on the main it will actually produce, so two
+  # green PRs touching yarn.lock can't combine into a red main. Inert until
+  # the queue is enabled in the branch protection of main.
+  merge_group:
+  # Safety net while the merge queue is off: main itself gets the full suite.
+  push:
+    branches: [main]
 
 concurrency:
   group: pr-${{ github.ref }}
-  cancel-in-progress: true
+  # Never cancel a run on main: it is the only check of the merged result.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 permissions:
   contents: read
@@ -120,6 +128,8 @@ jobs:
 
   dependency-review:
     name: Dependency Review
+    # Diffs a PR against its base: nothing to compare on push / merge queue.
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -139,6 +149,9 @@ jobs:
 
   gitleaks:
     name: Secret Scan (Gitleaks)
+    # gitleaks-action handles pull_request and push; main-maintenance.yml
+    # already scans main on push, so only PRs need it here.
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -150,3 +163,16 @@ jobs:
       - uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  actionlint:
+    # Not a required check yet: promote it once it has proven stable.
+    name: Workflow Lint (actionlint)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-go@v6
+        with:
+          go-version: stable
+      # Pinned version; the Go checksum database verifies the module.
+      - name: Run actionlint
+        run: go run github.com/rhysd/actionlint/cmd/actionlint@v1.7.7
