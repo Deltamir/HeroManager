@@ -37,7 +37,7 @@ jobs:
       - name: Check peer dependencies declared by the project
         run: |
           yarn install --immutable --mode=skip-build > install.log 2>&1
-          node scripts/check-peers.mjs install.log
+          node scripts/check-peers.mjs
       # Warning only: a global dedupe currently touches ~1 400 lockfile lines.
       # Flip to blocking once a dedupe PR has landed.
       - name: Check for dedupable packages (warning)

@@ -15,6 +15,7 @@ const REQUIRED_ENV = [
 
 /** Names of required variables that are unset, plus a too-short secret. */
 export function configProblems(env: NodeJS.ProcessEnv = process.env): string[] {
+  // eslint-disable-next-line security/detect-object-injection -- keys come from the constant list above
   const problems: string[] = REQUIRED_ENV.filter((name) => !env[name]);
   const secret = env.BETTER_AUTH_SECRET;
   if (secret && secret.length < 32) problems.push("BETTER_AUTH_SECRET (< 32 chars)");

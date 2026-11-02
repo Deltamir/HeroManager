@@ -6,14 +6,14 @@
 //
 // Usage (CI Lint job):
 //   yarn install --immutable --mode=skip-build > install.log 2>&1
-//   node scripts/check-peers.mjs install.log
+//   node scripts/check-peers.mjs        (reads ./install.log)
 import { readFileSync } from "node:fs";
 
 // Known, accepted gaps: provided by nuxt itself at runtime.
 // Remove an entry once it is declared; never add one without a reason.
 const ALLOWED = new Set(["rolldown", "vite"]);
 
-const log = readFileSync(process.argv[2] ?? "install.log", "utf8");
+const log = readFileSync("install.log", "utf8");
 const problems = [
   ...log.matchAll(
     /(YN0002|YN0060): .*nuxt-app@workspace:\. (?:doesn't provide|provides) (\S+?)(?: with version \S+)? \((p[0-9a-f]{6})\)/g,
