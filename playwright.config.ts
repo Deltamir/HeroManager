@@ -1,4 +1,5 @@
 import { defineConfig, devices } from "@playwright/test";
+import { EMAIL_CAPTURE_FILE } from "./test/e2e/helpers/mail";
 
 const isCI = !!process.env.CI;
 
@@ -81,6 +82,14 @@ export default defineConfig({
             "ci-test-secret-minimum-32-chars-padding-ok",
           VERCEL_PROJECT_PRODUCTION_URL:
             process.env.VERCEL_PROJECT_PRODUCTION_URL || "http://localhost:3000",
+          // Magic-link emails go to a file the specs read back — never Resend.
+          EMAIL_CAPTURE_FILE,
+          // Placeholder OAuth apps: the specs only check the authorize URL,
+          // no provider is ever contacted.
+          GHUB_CLIENT_ID: process.env.GHUB_CLIENT_ID || "e2e-github-client-id",
+          GHUB_CLIENT_SECRET: process.env.GHUB_CLIENT_SECRET || "e2e-github-secret",
+          TWITCH_CLIENT_ID: process.env.TWITCH_CLIENT_ID || "e2e-twitch-client-id",
+          TWITCH_CLIENT_SECRET: process.env.TWITCH_CLIENT_SECRET || "e2e-twitch-secret",
         },
       },
 });
