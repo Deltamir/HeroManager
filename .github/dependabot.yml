@@ -31,6 +31,12 @@ updates:
           - "prisma"
       actions:
         dependency-type: production
+      # Transitive security fixes arrive as one lockfile PR instead of
+      # several parallel ones racing each other on yarn.lock.
+      security:
+        applies-to: security-updates
+        patterns:
+          - "*"
 
   # GitHub Actions
   - package-ecosystem: github-actions
