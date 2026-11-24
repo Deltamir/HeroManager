@@ -33,6 +33,9 @@ yarn studio            # → http://localhost:5555
 yarn lint
 yarn lint:fix
 
+# Lockfile guards (also run in the CI Lint job)
+yarn check:singletons  # fails if vue, pg, better-auth, … resolve to 2+ versions
+
 # TypeScript check
 yarn typecheck
 
