@@ -106,4 +106,18 @@ describe("lib/auth", () => {
     expect(mod.auth).toHaveProperty("handler");
     expect(mod.auth).toHaveProperty("api");
   });
+
+  it("only links a provider whose email matches the signed-in user", async () => {
+    // Security rule: linking GitHub/Twitch with a different email would let
+    // someone attach their provider account to another user's profile.
+    // This pins the config; the OAuth round trip itself is not exercised.
+    await import("~~/lib/auth");
+    const config = betterAuthSpy.mock.calls[0]![0] as {
+      account: { accountLinking: { enabled: boolean; allowDifferentEmails: boolean } };
+    };
+    expect(config.account.accountLinking).toEqual({
+      enabled: true,
+      allowDifferentEmails: false,
+    });
+  });
 });
