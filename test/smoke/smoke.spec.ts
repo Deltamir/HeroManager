@@ -46,4 +46,14 @@ test.describe("Production smoke", () => {
     const res = await request.get("/api/auth/session");
     expect(res.status()).toBeLessThan(500);
   });
+
+  // Verifies the database is reachable with the schema Better Auth needs and
+  // that the required env vars are set. The page probes above never touch
+  // the DB: a broken connection or a missing OAuth key would otherwise only
+  // show up when a user tries to sign in.
+  test("health endpoint reports db and config ok", async ({ request }) => {
+    const res = await request.get("/api/health");
+    expect(res.status(), await res.text()).toBe(200);
+    expect(await res.json()).toEqual({ db: "ok", config: "ok" });
+  });
 });

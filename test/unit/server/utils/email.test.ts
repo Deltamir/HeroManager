@@ -43,6 +43,9 @@ describe("server/utils/email", () => {
     vi.resetModules();
     delete process.env.RESEND_API_KEY;
     delete process.env.EMAIL_FROM;
+    delete process.env.EMAIL_CAPTURE_FILE;
+    delete process.env.VERCEL;
+    delete process.env.VERCEL_ENV;
   });
 
   afterEach(() => {
@@ -95,5 +98,57 @@ describe("server/utils/email", () => {
     await expect(
       sendMagicLinkEmail("a@b.tld", "https://app/x"),
     ).rejects.toThrow(/rate limited/);
+  });
+
+  it("falls back to the Resend sandbox sender outside production", async () => {
+    process.env.RESEND_API_KEY = "re_test_key";
+    sendSpy.mockResolvedValue({ error: null });
+
+    const { sendMagicLinkEmail } = await import("~~/server/utils/email");
+    await sendMagicLinkEmail("a@b.tld", "https://app/x");
+
+    expect((sendSpy.mock.calls[0]![0] as { from: string }).from).toBe(
+      "onboarding@resend.dev",
+    );
+  });
+
+  it("refuses the sandbox sender in production when EMAIL_FROM is unset", async () => {
+    // The sandbox sender only delivers to the Resend account owner: in
+    // production that would drop every user's magic link without an error.
+    process.env.RESEND_API_KEY = "re_test_key";
+    process.env.VERCEL_ENV = "production";
+
+    const { sendMagicLinkEmail } = await import("~~/server/utils/email");
+    await expect(
+      sendMagicLinkEmail("a@b.tld", "https://app/x"),
+    ).rejects.toThrow(/EMAIL_FROM/);
+    expect(sendSpy).not.toHaveBeenCalled();
+  });
+
+  it("writes to EMAIL_CAPTURE_FILE instead of calling Resend", async () => {
+    const { mkdtemp, readFile } = await import("node:fs/promises");
+    const { tmpdir } = await import("node:os");
+    const { join } = await import("node:path");
+    const file = join(await mkdtemp(join(tmpdir(), "email-")), "mail.jsonl");
+    process.env.EMAIL_CAPTURE_FILE = file;
+
+    const { sendMagicLinkEmail } = await import("~~/server/utils/email");
+    await sendMagicLinkEmail("a@b.tld", "https://app/verify?token=abc");
+
+    expect(sendSpy).not.toHaveBeenCalled();
+    const [line] = (await readFile(file, "utf8")).trim().split("\n");
+    const message = JSON.parse(line!) as { to: string; html: string };
+    expect(message.to).toBe("a@b.tld");
+    expect(message.html).toContain("https://app/verify?token=abc");
+  });
+
+  it("refuses the capture transport on Vercel", async () => {
+    process.env.EMAIL_CAPTURE_FILE = "/tmp/never-written.jsonl";
+    process.env.VERCEL = "1";
+
+    const { sendMagicLinkEmail } = await import("~~/server/utils/email");
+    await expect(
+      sendMagicLinkEmail("a@b.tld", "https://app/x"),
+    ).rejects.toThrow(/Vercel/);
   });
 });
